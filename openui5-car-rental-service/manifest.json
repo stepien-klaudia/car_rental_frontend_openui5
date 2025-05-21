@@ -1,0 +1,22 @@
+{
+    "sap.app": {
+      "id": "openui5-car-rental-service",
+      "type": "application"
+    },
+    "sap.ui": {
+      "technology": "UI5",
+      "viewPath": "openui5-car-rental-service.view"
+    },
+    "sap.ui5": {
+      "rootView": {
+        "viewName": "openui5-car-rental-service.view.Main",
+        "type": "XML"
+      },
+      "dependencies": {
+        "libs": {
+          "sap.m": {}
+        }
+      }
+    }
+  }
+  

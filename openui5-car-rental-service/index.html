@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Wypożyczalnia samochodów - panel sterowania</title>
-  <script
-    src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
-    id="sap-ui-bootstrap"
-    data-sap-ui-theme="sap_fiori_3"
-    data-sap-ui-libs="sap.m"
-    data-sap-ui-resourceroots='{"app": "./"}'>
-  </script>
-  <script>
-    sap.ui.getCore().attachInit(function () {
-      sap.ui.require(["app/Home"]);
-    });
-  </script>
-</head>
-<body class="sapUiBody" id="content"></body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello OpenUI5</title>
+    <script
+      id="sap-ui-bootstrap"
+      src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+      data-sap-ui-theme="sap_fiori_3_dark"
+      data-sap-ui-libs="sap.m"
+      data-sap-ui-resourceroots='{"openui5-car-rental-service": "./"}'
+      data-sap-ui-onInit="module:sap/ui/core/ComponentSupport">
+    </script>
+  </head>
+  <body class="sapUiBody" id="content">
+    <div data-sap-ui-component data-name="openui5-car-rental-service" data-id="container"></div>
+  </body>
 </html>

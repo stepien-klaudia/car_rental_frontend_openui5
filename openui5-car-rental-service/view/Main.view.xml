@@ -1,0 +1,103 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <App id="app">
+
+        <Page id="page" showHeader="false">
+            <f:ShellBar 
+            title="Strona główna"
+            showSearch="true"
+            >
+                <f:menu>
+                <Menu>
+                    <MenuItem text="Flight booking" icon="sap-icon://flight"></MenuItem>
+                </Menu>
+                </f:menu>
+                <f:profile>
+                    <f:Avatar initials="UI"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <IconTabHeader 
+            id= "iconTabHeader"
+            mode="Inline"
+            select= "onTabSelect">
+            <items>
+            <IconTabFilter key="zarzadzanie-flota" text="Zarządzanie flotą"></IconTabFilter>
+            <IconTabFilter key="zarzadzanie-klientami" text="Zarządzanie klientami"></IconTabFilter>
+            <IconTabFilter key= "zarzadzanie-pracownikami" text="Zarządzanie pracownikami"></IconTabFilter>
+            <IconTabFilter key="zarzadzanie-rezerwacjami" text="Zarządzanie rezerwacjami"></IconTabFilter>
+            <IconTabFilter key="zarzadzanie-punktami" text="Zarządzanie punktami"></IconTabFilter>
+            <IconTabFilter key="raportowanie" text="Raportowanie"></IconTabFilter>
+            </items>
+            </IconTabHeader>
+            <content>
+                    <FlexBox id="flotaContent" class="sapUiTinyMarginTop">
+                        <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Nadchodzące przeglądy"
+                        subheader="Kontroluj stan swoich pojazdów"
+                        press="onTilePress">
+                        <TileContent unit="Samochody wymagające przeglądu">
+                            <NumericContent value="1" icon="sap-icon://insurance-car"></NumericContent>
+                        </TileContent>  
+                    </GenericTile>
+
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Nowy pojazd"
+                        subheader="Dodaj nowy pojazd do floty"
+                        press="onTilePress">
+                        <TileContent>
+                            <ImageContent src="sap-icon://car-rental"></ImageContent>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Edytuj pojazdy"
+                        subheader="Edytuj lub usuń pojazd z floty"
+                        press="onTilePress">
+                        <TileContent>
+                            <ImageContent src="sap-icon://write-new-document"></ImageContent>
+                        </TileContent>
+                    </GenericTile>
+                </FlexBox>
+                <FlexBox id="clientContent" class="sapUiTinyMarginTop" visible="false">
+                 <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Nowy klient"
+                        subheader="Dodaj nowego klienta do bazy"
+                        press="onTilePress">
+                        <TileContent>
+                            <ImageContent src="sap-icon://add-contact"/>
+                        </TileContent>  
+                    </GenericTile>
+
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Edytuj klientów"
+                        subheader="Edytuj dane klienta lub wrzuć go na czarną listę"
+                        press="onTilePress">
+                        <TileContent>
+                            <ImageContent src="sap-icon://employee-pane"></ImageContent>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Czarna lista"
+                        subheader="Klienci pozbawieni prawa do dokonania rezerwacji"
+                        press="onTilePress">
+                        <TileContent>
+                            <NumericContent value="10" icon="sap-icon://employee-rejections"></NumericContent>
+                        </TileContent>
+                    </GenericTile>
+                </FlexBox>
+                <FlexBox ></FlexBox>
+            </content>
+        </Page>
+    </App>
+</mvc:View>
