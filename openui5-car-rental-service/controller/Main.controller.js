@@ -60,6 +60,7 @@ sap.ui.define([
         },
         onProfilePress: function (oEvent){
             const oButton = oEvent.getSource();
+            var that = this;
 
             if (!this._oProfileMenu) {
             this._oProfileMenu = new sap.m.Menu({
@@ -83,8 +84,8 @@ sap.ui.define([
             new sap.m.MenuItem({
             text: "Wyloguj",
             icon: "sap-icon://log",
-            press: function () {
-            sap.m.MessageToast.show("Wylogowano");
+            press: () => {
+                that.getOwnerComponent().getRouter().navTo("Logoff", {}, true);
           }
         })
         ]

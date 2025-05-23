@@ -1,0 +1,21 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="openui5-car-rental-service.controller.LogoffPage"
+  displayBlock="true">
+
+  <VBox
+    class="sapUiContentPadding"
+    justifyContent="Center"
+    alignItems="Center"
+    height="100%">
+
+    <Text text="Zostałeś pomyślnie wylogowany." class="sapUiLargeMarginBottom sapUiMediumMarginTop"/>
+
+    <Button
+      text="Powrót do logowania"
+      type="Emphasized"
+      press="onGoToLogin" />
+
+  </VBox>
+</mvc:View>

@@ -31,7 +31,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/ui/core/
           MessageToast.show("Zalogowano pomyślnie!");
           // Przejdź do widoku głównego
           const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-          oRouter.navTo("home");
+          oRouter.navTo("Main");
         })
         .catch(err => {
           this.byId("statusText").setText(err.message);

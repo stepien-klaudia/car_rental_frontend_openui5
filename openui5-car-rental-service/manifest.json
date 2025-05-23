@@ -17,7 +17,53 @@
           "sap.m": {},
           "sap.ui.core": {}
         }
+      },
+      "routing":{
+        "config":{
+            "routerClass": "sap.m.routing.Router",
+            "viewType": "XML",
+            "viewPath": "openui5-car-rental-service.view",
+            "controlId": "app", 
+            "controlAggregation": "pages",
+            "bypassed": {
+                "target": "notFound"
+            },
+            "async": true
+        },
+        "routes": [
+            {
+                "pattern":"",
+                "name":"Main",
+                "target":"Main"
+            },
+            {
+                "pattern":"logoff",
+                "name":"Logoff",
+                "target":"Logoff"
+            },
+            {
+                "pattern":"login",
+                "name":"Login",
+                "target":"Login"
+            }
+        ],
+        "targets":
+        {
+            "Main":
+            {
+                "viewName":"Main"
+            },
+            "Logoff":
+            {
+                "viewName":"LogoffPage"
+            },
+            "Login":
+            {
+                "viewName":"Login"
+            }
+        }
+        }
       }
     }
-  }
+  
   

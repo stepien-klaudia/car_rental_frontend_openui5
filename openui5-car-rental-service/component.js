@@ -10,6 +10,7 @@ sap.ui.define([
       init: function () {
         UIComponent.prototype.init.apply(this, arguments);
         this.setModel(new JSONModel({ name: "OpenUI5" }));
+        this.getRouter().initialize();
       }
     });
   });
