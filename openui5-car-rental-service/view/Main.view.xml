@@ -9,15 +9,9 @@
         <Page id="page" showHeader="false">
             <f:ShellBar 
             title="Strona główna"
-            showSearch="true"
             >
-                <f:menu>
-                <Menu>
-                    <MenuItem text="Flight booking" icon="sap-icon://flight"></MenuItem>
-                </Menu>
-                </f:menu>
                 <f:profile>
-                    <f:Avatar initials="UI"></f:Avatar>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
                 </f:profile>
             </f:ShellBar>
             <IconTabHeader 
@@ -34,8 +28,8 @@
             </items>
             </IconTabHeader>
             <content>
-                    <FlexBox id="flotaContent" class="sapUiTinyMarginTop">
-                        <GenericTile 
+                <FlexBox id="flotaContent" class="sapUiTinyMarginTop">
+                    <GenericTile 
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Nadchodzące przeglądy"
                         subheader="Kontroluj stan swoich pojazdów"
@@ -96,7 +90,157 @@
                         </TileContent>
                     </GenericTile>
                 </FlexBox>
-                <FlexBox ></FlexBox>
+                <FlexBox id="pracownikContent" class="sapUiTinyMarginTop" visible="false">
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Dodaj konto pracownika"
+                        press="onTilePress">
+                        <TileContent>
+                            <ImageContent src="sap-icon://add-employee"></ImageContent>
+                        </TileContent>  
+                    </GenericTile>
+
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Zarządzanie kontami pracowników"
+                        subheader="Zarządzaj dostępami pracowników"
+                        press="onTilePress">
+                        <TileContent>
+                            <ImageContent src="sap-icon://employee-lookup"></ImageContent>
+                        </TileContent>
+                    </GenericTile>
+                </FlexBox>
+              <FlexBox id="rezerwacjaContent" class="sapUiTinyMarginTop" visible="false">
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Dodaj rezerwację"
+                        press="onTilePress">
+                        <TileContent>
+                            <ImageContent src="sap-icon://add-calendar"></ImageContent>
+                        </TileContent>  
+                    </GenericTile>
+
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Zarządzanie rezerwacjami"
+                        subheader="Wyświetlaj, edytuj lub anuluj rezerwację"
+                        press="onTilePress">
+                        <TileContent>
+                            <ImageContent src="sap-icon://check-availability"></ImageContent>
+                        </TileContent>
+                    </GenericTile>
+                </FlexBox>
+                <FlexBox id="punktContent" class="sapUiTinyMarginTop" visible="false">
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Dodaj punkt"
+                        press="onTilePress">
+                        <TileContent>
+                            <ImageContent src="sap-icon://globe"></ImageContent>
+                        </TileContent>  
+                    </GenericTile>
+
+                    <GenericTile 
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
+                        header="Zarządzanie punktami"
+                        subheader="Wyświetlaj, edytuj lub usuwaj punkty"
+                        press="onTilePress">
+                        <TileContent>
+                            <NumericContent value="10" icon="sap-icon://building"></NumericContent>
+                        </TileContent>
+                    </GenericTile>
+                </FlexBox>
+                <VBox id="raportContent" class="sapUiTinyMarginTop" visible="false">
+                    <Title text = "Raporty dotyczące floty" level="H4" class="margin-bottom: 1rem"></Title>
+                    <FlexBox class="sapUiTinyMarginTop">
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Stan floty"
+                            press="onTilePress">
+                            <TileContent>
+                                <ImageContent src="sap-icon://car-rental"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Historia pojazdu"
+                            press="onTilePress">
+                            <TileContent>
+                                <ImageContent src="sap-icon://insurance-car"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+                    </FlexBox>
+                    <Title text = "Raporty dotyczące klientów" level="H4" class="margin-bottom: 1rem"></Title>
+                    <FlexBox class="sapUiTinyMarginTop">
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Historia wypożyczeń klienta"
+                            press="onTilePress">
+                            <TileContent>
+                                <ImageContent src="sap-icon://cart"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Nowi klienci"
+                            press="onTilePress">
+                            <TileContent>
+                                <NumericContent value="10" icon="sap-icon://decision"></NumericContent>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Najczęściej wypożyczający klienci"
+                            press="onTilePress">
+                            <TileContent>
+                                <ImageContent src="sap-icon://bar-chart"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Zalegający klienci"
+                            press="onTilePress">
+                            <TileContent>
+                                <NumericContent value="10" icon="sap-icon://money-bills"></NumericContent>
+                            </TileContent>
+                        </GenericTile>
+                    </FlexBox>
+                    <Title text="Raporty dotyczące wypożyczeń" level="H4" class="margin-bottom: 1rem"></Title>
+                    <FlexBox class="sapUiTinyMarginTop">
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Wypożyczenia w danym okresie"
+                            press="onTilePress">
+                            <TileContent>
+                                <NumericContent value="10" icon="sap-icon://present"></NumericContent>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Zbliżające się zwroty"
+                            press="onTilePress">
+                            <TileContent>
+                                <NumericContent value="10" icon="sap-icon://in-progress-2"></NumericContent>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Opóźnienia w zwrocie"
+                            press="onTilePress">
+                            <TileContent>
+                                <NumericContent value="10" icon="sap-icon://lateness"></NumericContent>
+                            </TileContent>
+                        </GenericTile>
+                        <GenericTile 
+                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
+                            header="Wolne i zajęte samochody"
+                            press="onTilePress">
+                            <TileContent>
+                                <ImageContent src="sap-icon://collision"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+                    </FlexBox>
+                </VBox>
             </content>
         </Page>
     </App>

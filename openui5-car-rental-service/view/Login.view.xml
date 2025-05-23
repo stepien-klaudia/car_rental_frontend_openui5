@@ -1,0 +1,25 @@
+<mvc:View
+  controllerName="openui5-car-rental-service.controller.Login"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  displayBlock="true">
+
+  <VBox
+    width="100%"
+    justifyContent="Center"
+    alignItems="Center"
+    height="100vh"
+    class="sapUiContentPadding">
+
+    <VBox width="300px" class="sapUiSmallMargin" alignItems="Stretch">
+      <Title text="Logowanie do systemu" level="H2" textAlign="Center" />
+      <Input value="{/username}" placeholder="Użytkownik" />
+      <Input type="Password" value="{/password}" placeholder="Hasło" />
+      <Button text="Zaloguj" press="onLogin" type="Emphasized" />
+      <!-- <Text id="statusText" text="" textAlign="Center" type=""/> -->
+      <MessageStrip id="statusText" text="" visible="false"></MessageStrip>
+    </VBox>
+
+  </VBox>
+</mvc:View>
