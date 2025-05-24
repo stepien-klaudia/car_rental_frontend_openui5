@@ -14,15 +14,16 @@ sap.ui.define([
         // Funkcja wywoływana po kliknięciu dowolnego kafelka
         onTilePress: function (oEvent) {
             var oSource = oEvent.getSource(); // Pobierz kafelek, który został kliknięty
-            var sTitle = oSource.getTitle(); // Pobierz jego tytuł
+            var sTitle = oSource.getHeader(); // Pobierz jego tytuł
+            var sRoute = oSource.getAriaLabel();
 
             // Pobierz niestandardową daną 'targetUrl' przypisaną do kafelka
-            var sTargetUrl = oSource.data("targetUrl");
+            // var sTargetUrl = oSource.data("targetUrl");
 
-            if (sTargetUrl) {
-                MessageToast.show("Otwieram: " + sTargetUrl);
+            if (sRoute) {
+                // MessageToast.show("Otwieram: " + sRoute);
                 // Otwórz URL w nowej karcie
-                window.open(sTargetUrl, "_blank"); 
+                this.getOwnerComponent().getRouter().navTo(sRoute,{},true);
             } else {
                 MessageToast.show("Kliknięto kafelek: " + sTitle + " (brak docelowego URL)");
             }

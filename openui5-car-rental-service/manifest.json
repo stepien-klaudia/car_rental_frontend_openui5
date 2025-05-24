@@ -45,6 +45,11 @@
                 "pattern":"login",
                 "name":"Login",
                 "target":"Login"
+            },
+            {
+                "pattern":"new_car",
+                "name":"NewCar",
+                "target":"NewCar"
             }
         ],
         "targets":
@@ -60,6 +65,10 @@
             "Login":
             {
                 "viewName":"Login"
+            },
+            "NewCar":
+            {
+                "viewName":"NewCar"
             }
         }
         }

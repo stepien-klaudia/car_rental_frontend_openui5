@@ -1,0 +1,171 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.NewCar"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+    <App>
+        <Page id="page_new_car" showNavButton="true" navButtonPress="onNavPress">
+            <f:ShellBar 
+            title="Nowy Pojazd"
+            secondTitle="Zarządzanie flotą"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+            <MessageStrip 
+                text="Wypełnij formularz i kliknij przycisk 'Dodaj' na dole ekranu"
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+            ></MessageStrip>
+            <form:Form 
+            id = "NewCarForm"
+            editable="true"
+            >
+            <form:title>
+                <core:Title text="Dodaj nowy pojazd"></core:Title>
+            </form:title>
+            <form:layout>
+                <form:ResponsiveGridLayout 
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="3"
+                adjustLabelSpan="true"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="4"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="true"></form:ResponsiveGridLayout>
+            </form:layout>
+            <form:formContainers>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane administracyjne"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label="Numer rejestracyjny">
+                            <form:fields>
+                                <Input value="{nr_rejestracyjny}" id="nr_rejestracyjny" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Rok produkcji">
+                            <form:fields>
+                                <MaskInput mask="DCCC" placeholderSymbol="_" value="{rok_produkcji}" id="rok_produkcji" required="true">
+                                    <rules>
+                                        <MaskInputRule maskFormatSymbol="C" regex="[0-9]"></MaskInputRule>
+                                        <MaskInputRule maskFormatSymbol="D" regex="[1-9]"></MaskInputRule>
+                                    </rules>
+                                </MaskInput>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Przebieg">
+                            <form:fields>
+                                <Input type="Number" value="{przebieg}" id="przebieg" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Data końca ważności przeglądu">
+                            <form:fields>
+                                <DatePicker id="data_przeglad" value="" class="sapUiSmallMarginBottom" required="true"></DatePicker>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Data końca ważności ubezpieczenia">
+                            <form:fields>
+                                <DatePicker id="data_ubezpieczenie" value="" class="sapUiSmallMarginBottom" required="true"></DatePicker>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer>
+                    <form:title>
+                        <core:Title text="Dane o samochodzie"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label="Marka">
+                            <form:fields>
+                                <Select>
+                                    <!-- <core:Item key="{ marka_key }" text="{marka_text}"></core:Item> -->
+                                    <core:Item key="bmw" text="BMW" />
+                                    <core:Item key="audi" text="Audi" />
+                                    <core:Item key="toyota" text="Toyota" />
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Model">
+                            <form:fields>
+                                <Select>
+                                    <core:Item key = "{model_key}" text="{model_text}"></core:Item>
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Liczba drzwi">
+                            <form:fields>
+                                <MaskInput mask="D" id="liczba_drzwi" value="{liczba_drzwi}" required="true">
+                                    <rules>
+                                        <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
+                                    </rules>
+                                </MaskInput>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Przeznaczenie">
+                            <form:fields>
+                                <Select >
+                                    <core:Item key="{przeznaczenie_key}" text="{przeznaczenie_text}"></core:Item>
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                    <form:FormElement label="Napęd">
+                        <form:fields>
+                            <Select >
+                                <core:Item key="{naped_key}" text="{naped_text}"></core:Item>
+                            </Select>
+                        </form:fields>
+                    </form:FormElement>
+                </form:FormContainer>
+                <form:FormContainer>
+                    <form:title>
+                        <core:Title text="Dane na potrzeby wypożyczalni"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label="Typ">
+                            <form:fields>
+                                <Select>
+                                    <core:Item key="{typ_key}" text="{typ_text}"></core:Item>
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Wiek pojazdu">
+                            <form:fields>
+                                <Input id="wiek_auta" value="{wiek_auta}" ></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Bezwypadkowy">
+                            <form:fields>
+                                <CheckBox valueState="{bezwypadkowy}" id="bezwypadkowy"></CheckBox>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+            </form:formContainers>
+            </form:Form>
+            </VBox>
+            <footer>
+                <OverflowToolbar id="ncFooter">
+                    <ToolbarSpacer ></ToolbarSpacer>
+                    <Button type="Accept" text="Dodaj" id="AddNewCar" press="onAcceptPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                    <Button type="Reject" text="Anuluj" id="CancelNewCar" press="onRejectPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                </OverflowToolbar>
+            </footer>
+        </Page>
+    </App>
+</mvc:View>

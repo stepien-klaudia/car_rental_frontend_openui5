@@ -1,4 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.f"
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.f" 
     controllerName="openui5-car-rental-service.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
@@ -43,6 +43,7 @@
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Nowy pojazd"
                         subheader="Dodaj nowy pojazd do floty"
+                        ariaLabel="NewCar"
                         press="onTilePress">
                         <TileContent>
                             <ImageContent src="sap-icon://car-rental"></ImageContent>
