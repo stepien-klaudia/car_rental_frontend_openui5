@@ -54,6 +54,7 @@
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Edytuj pojazdy"
                         subheader="Edytuj lub usuń pojazd z floty"
+                        ariaLabel="EditCar"
                         press="onTilePress">
                         <TileContent>
                             <ImageContent src="sap-icon://write-new-document"></ImageContent>

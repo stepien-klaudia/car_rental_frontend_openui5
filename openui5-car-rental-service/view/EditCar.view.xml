@@ -1,0 +1,38 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.NewCar"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+<App>
+    <Page id="page_edit_car" showNavButton="true" navButtonPress="onNavPress">
+        <f:ShellBar 
+            title="Edycja danych pojazdów"
+            secondTitle="Zarządzanie flotą"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+                <Title text="Lista wszystkich samochodów" level="H3"></Title>
+                <MessageStrip 
+                text="Wybierz samochód i naciśnij akcję po prawej stronie."
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+                ></MessageStrip>
+                <OverflowToolbar >
+                    <SearchField id="nrRejSearch" width="12rem" placeholder="Numer rejestracyjny">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </SearchField>
+                    <SearchField id="MarkaSearch" width="12rem" placeholder="Marka">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </SearchField>
+                </OverflowToolbar>
+                
+        
+    </VBox>
+    </Page>
+</App>
+
+</mvc:View>

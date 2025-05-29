@@ -50,6 +50,11 @@
                 "pattern":"new_car",
                 "name":"NewCar",
                 "target":"NewCar"
+            },
+            {
+                "pattern":"edit_car",
+                "name":"EditCar",
+                "target":"EditCar"
             }
         ],
         "targets":
@@ -69,6 +74,10 @@
             "NewCar":
             {
                 "viewName":"NewCar"
+            },
+            "EditCar":
+            {
+                "viewName":"EditCar"
             }
         }
         }
