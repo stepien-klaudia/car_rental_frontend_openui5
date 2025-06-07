@@ -90,9 +90,17 @@
                             <form:fields>
                                 <Select>
                                     <!-- <core:Item key="{ marka_key }" text="{marka_text}"></core:Item> -->
-                                    <core:Item key="bmw" text="BMW" />
-                                    <core:Item key="audi" text="Audi" />
-                                    <core:Item key="toyota" text="Toyota" />
+                                    <core:Item key="BMW" text="BMW" />
+                                    <core:Item key="Audi" text="Audi" />
+                                    <core:Item key="Toyota" text="Toyota" />
+                                    <core:Item key = "Volkswagen" text="Volkswagen"/>
+                                    <core:Item key = "Mercedes" text="Mercedes"/>
+                                    <core:Item key="Ford" text="Ford"/>
+                                    <core:Item key="Honda" text="Honda"/>
+                                    <core:Item key="Hyundai" text="Hyundai"/>
+                                    <core:Item key="Kia" text="Kia"/>
+                                    <core:Item key="Renault" text="Renault"/>
+                                    <core:Item key="Peugeot" text="Peugeot"/>
                                 </Select>
                             </form:fields>
                         </form:FormElement>
