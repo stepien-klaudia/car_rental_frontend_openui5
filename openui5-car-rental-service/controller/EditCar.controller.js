@@ -121,6 +121,7 @@ sap.ui.define([
                   }.bind(this)});
               }.bind(this),
               complete: function () {
+                  this.oBlockApproveMessage.close();
                   BusyIndicator.hide();
               }
           });
@@ -135,6 +136,53 @@ sap.ui.define([
             })
     })
     this.oBlockApproveMessage.open();
+    },
+
+    onDeletePress: function (){
+      // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
+      const id = 1;
+      this.oDeleteApproveMessage = new Dialog({
+        type: DialogType.Message,
+        title: "Potwierdzenie",
+        content: new Text({text: "Czy na pewno chcesz usunąć pojazd z bazy?"}),
+        beginButton: new Button({
+          type: ButtonType.Emphasized,
+          text: "Tak",
+          press: function () {
+            BusyIndicator.show(0);
+            $.ajax({
+              url: "http://localhost:8090/api/branches/1/vehicles/${id}",
+              type: "DELETE",
+              success: function () {
+                  // sap.m.MessageToast.show("Dane zapisane do bazy!");
+                  sap.m.MessageBox.success("Pojazd został usunięty", {
+                      onClose: function (oAction){
+                          // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
+                          location.reload();
+                      }.bind(this)
+                  }); 
+              }.bind(this),
+              error: function (){
+                  sap.m.MessageBox.error("Podczas usuwania wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
+                      // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
+                      location.reload();
+                  }.bind(this)});
+              }.bind(this),
+              complete: function () {
+                  BusyIndicator.hide();
+              }
+          });
+        }.bind(this)
+      }),
+      endButton: new Button({
+                type: ButtonType.Emphasized,
+                text: "Nie",
+                press: function (){
+                    this.oDeleteApproveMessage.close();
+                }.bind(this)
+            })
+    })
+    this.oDeleteApproveMessage.open();
     }
     })
   });
