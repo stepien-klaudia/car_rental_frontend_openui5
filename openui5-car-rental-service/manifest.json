@@ -85,6 +85,11 @@
                 "pattern":"client/{id}/view",
                 "name": "ClientView",
                 "target": "ClientView"
+            },
+            {
+                "pattern": "client/{id}/edit",
+                "name": "ClientEdit",
+                "target": "ClientEdit"
             }
         ],
         "targets":
@@ -132,6 +137,10 @@
             "ClientView":
             {
                 "viewName": "ClientView"
+            },
+            "ClientEdit":
+            {
+                "viewName": "ClientEdit"
             }
         }
         }
