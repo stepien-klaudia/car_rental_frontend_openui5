@@ -80,6 +80,11 @@
                 "pattern":"edit_cilent",
                 "name": "EditClient",
                 "target": "EditClient"
+            },
+            {
+                "pattern":"client/{id}/view",
+                "name": "ClientView",
+                "target": "ClientView"
             }
         ],
         "targets":
@@ -123,6 +128,10 @@
             "EditClient":
             {
                 "viewName": "EditClient"
+            },
+            "ClientView":
+            {
+                "viewName": "ClientView"
             }
         }
         }
