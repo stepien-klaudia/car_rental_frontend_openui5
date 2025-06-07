@@ -89,6 +89,7 @@
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Czarna lista"
                         subheader="Klienci pozbawieni prawa do dokonania rezerwacji"
+                        ariaLabel="BlackList"
                         press="onTilePress">
                         <TileContent>
                             <NumericContent value="10" icon="sap-icon://employee-rejections"></NumericContent>

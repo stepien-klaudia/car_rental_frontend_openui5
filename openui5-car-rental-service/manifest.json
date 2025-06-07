@@ -90,6 +90,11 @@
                 "pattern": "client/{id}/edit",
                 "name": "ClientEdit",
                 "target": "ClientEdit"
+            },
+            {
+                "pattern": "blacklist",
+                "name": "BlackList",
+                "target": "BlackList"
             }
         ],
         "targets":
@@ -141,6 +146,10 @@
             "ClientEdit":
             {
                 "viewName": "ClientEdit"
+            },
+            "BlackList":
+            {
+                "viewName": "BlackList"
             }
         }
         }
