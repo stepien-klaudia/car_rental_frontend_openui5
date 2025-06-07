@@ -1,0 +1,99 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.ClientView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+     <App>
+        <Page showNavButton="true" navButtonPress="onNavPress">
+            <f:ShellBar 
+            title="Dane klienta"
+            secondTitle="Zarządzanie klientami / Edycja danych klienta"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+            <MessageStrip 
+                text="Z tego widoku nie można edytować danych klienta. Jeżeli chcesz to zrobić, wróć do listy klientów i naciśnij 'Edytuj'"
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+            ></MessageStrip>
+            <form:Form 
+            editable="false"
+            >
+            <form:title>
+                <core:Title text="Wyświetl dane klienta"></core:Title>
+            </form:title>
+            <form:layout>
+                <form:ResponsiveGridLayout 
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="3"
+                adjustLabelSpan="true"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="4"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="true"></form:ResponsiveGridLayout>
+            </form:layout>
+            <form:formContainers>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane podstawowe"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Imię">
+                            <form:fields>
+                                <Input id = "ClientViewFirstName" required="true" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Nazwisko">
+                            <form:fields>
+                                <Input id = "ClientViewLastName" required="true" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Data urodzenia">
+                            <form:fields>
+                                <DatePicker id = "ClientViewBirthDate" required="true" editable="false"></DatePicker>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label= "Numer dowodu osobistego">
+                            <form:fields>
+                                <Input id = "ClientViewIDNumber" required="true" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane komunikacyjne"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Adres email">
+                            <form:fields>
+                                <Input id = "ClientViewEmail" required="true" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Numer telefonu">
+                            <form:fields>
+                                <MaskInput id = "ClientViewTelNr" required="true" mask = "+48 DDD DDD DDD" editable="false">
+                                    <rules>
+                                        <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
+                                    </rules>
+                                </MaskInput>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+            </form:formContainers>
+            </form:Form>
+            </VBox>
+        </Page>
+    </App>
+</mvc:View>
