@@ -90,50 +90,50 @@ sap.ui.define([
 
     onBlockPress: function (){
       // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
-    //   const id = 1;
-    //   this.oBlockApproveMessage = new Dialog({
-    //     type: DialogType.Message,
-    //     title: "Potwierdzenie",
-    //     content: new Text({text: "Czy na pewno chcesz zablokować pojazd?"}),
-    //     beginButton: new Button({
-    //       type: ButtonType.Emphasized,
-    //       text: "Tak",
-    //       press: function () {
-    //         BusyIndicator.show(0);
-    //         $.ajax({
-    //           url: "http://localhost:8090/api/vehicles/${id}/lock",
-    //           type: "PATCH",
-    //           success: function () {
-    //               // sap.m.MessageToast.show("Dane zapisane do bazy!");
-    //               sap.m.MessageBox.success("Dane zostały zaktualizowane", {
-    //                   onClose: function (oAction){
-    //                       // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
-    //                       location.reload();
-    //                   }.bind(this)
-    //               }); 
-    //           }.bind(this),
-    //           error: function (){
-    //               sap.m.MessageBox.error("Podczas zapisu wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
-    //                   // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
-    //                   location.reload();
-    //               }.bind(this)});
-    //           }.bind(this),
-    //           complete: function () {
-    //               this.oBlockApproveMessage.close();
-    //               BusyIndicator.hide();
-    //           }
-    //       });
-    //     }.bind(this)
-    //   }),
-    //   endButton: new Button({
-    //             type: ButtonType.Emphasized,
-    //             text: "Nie",
-    //             press: function (){
-    //                 this.oBlockApproveMessage.close();
-    //             }.bind(this)
-    //         })
-    // })
-    // this.oBlockApproveMessage.open();
+      const id = 1;
+      this.oBlockApproveMessage = new Dialog({
+        type: DialogType.Message,
+        title: "Potwierdzenie",
+        content: new Text({text: "Czy na pewno chcesz przenieść klienta na czarną listę?"}),
+        beginButton: new Button({
+          type: ButtonType.Emphasized,
+          text: "Tak",
+          press: function () {
+            BusyIndicator.show(0);
+            $.ajax({
+              url: "http://localhost:8090/api/clients/${id}/blackList",
+              type: "PATCH",
+              success: function () {
+                  // sap.m.MessageToast.show("Dane zapisane do bazy!");
+                  sap.m.MessageBox.success("Dane zostały zaktualizowane", {
+                      onClose: function (oAction){
+                          // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
+                          location.reload();
+                      }.bind(this)
+                  }); 
+              }.bind(this),
+              error: function (){
+                  sap.m.MessageBox.error("Podczas zapisu wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
+                      // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
+                      location.reload();
+                  }.bind(this)});
+              }.bind(this),
+              complete: function () {
+                  this.oBlockApproveMessage.close();
+                  BusyIndicator.hide();
+              }
+          });
+        }.bind(this)
+      }),
+      endButton: new Button({
+                type: ButtonType.Emphasized,
+                text: "Nie",
+                press: function (){
+                    this.oBlockApproveMessage.close();
+                }.bind(this)
+            })
+    })
+    this.oBlockApproveMessage.open();
     }
     })
   });

@@ -1,0 +1,111 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.ClientEdit"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+     <App>
+        <Page showNavButton="true" navButtonPress="onNavPress">
+            <f:ShellBar 
+            title="Aktualizacja danych klienta"
+            secondTitle="Zarządzanie klientami / Edycja danych klientów"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+            <MessageStrip 
+                text="Zmień dane i kliknij przycisk 'Zapisz' na dole ekranu"
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+            ></MessageStrip>
+            <form:Form 
+            id = "ClientEditForm"
+            editable="true"
+            >
+            <form:title>
+                <core:Title text="Edytuj dane klienta"></core:Title>
+            </form:title>
+            <form:layout>
+                <form:ResponsiveGridLayout 
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="3"
+                adjustLabelSpan="true"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="4"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="true"></form:ResponsiveGridLayout>
+            </form:layout>
+            <form:formContainers>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane podstawowe"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Imię">
+                            <form:fields>
+                                <Input id = "ClientEditFirstName" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Nazwisko">
+                            <form:fields>
+                                <Input id = "ClientEditLastName" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Data urodzenia">
+                            <form:fields>
+                                <DatePicker id = "ClientEditBirthDate" required="true" editable="false"></DatePicker>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label= "Numer dowodu osobistego">
+                            <form:fields>
+                                <Input id = "ClientEditIDNumber" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane komunikacyjne"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Adres email">
+                            <form:fields>
+                                <Input id = "ClientEditEmail" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Numer telefonu">
+                            <form:fields>
+                                <MaskInput id = "ClientEditTelNr" required="true" mask = "+48 DDD DDD DDD">
+                                    <rules>
+                                        <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
+                                    </rules>
+                                </MaskInput>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+            </form:formContainers>
+            </form:Form>
+            </VBox>
+            <footer>
+                <OverflowToolbar id="ClientEditFooter">
+                    <ToolbarSpacer ></ToolbarSpacer>
+                    <Button type="Accept" text="Zapisz" id="EditClient" press="onAcceptPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                    <Button type="Reject" text="Anuluj" id="CancelEditClient" press="onRejectPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                </OverflowToolbar>
+            </footer>
+        </Page>
+    </App>
+</mvc:View>
