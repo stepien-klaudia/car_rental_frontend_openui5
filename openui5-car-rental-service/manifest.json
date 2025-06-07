@@ -100,6 +100,11 @@
                 "pattern": "new_branch",
                 "name": "NewBranch",
                 "target":"NewBranch"
+            },
+            {
+                "pattern":"edit_branch",
+                "name": "EditBranch",
+                "target": "EditBranch"
             }
         ],
         "targets":
@@ -159,6 +164,10 @@
             "NewBranch":
             {
                 "viewName":"NewBranch"
+            },
+            "EditBranch":
+            {
+                "viewName": "EditBranch"
             }
         }
         }

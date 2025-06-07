@@ -151,6 +151,7 @@
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Zarządzanie punktami"
                         subheader="Wyświetlaj, edytuj lub usuwaj punkty"
+                        ariaLabel="EditBranch"
                         press="onTilePress">
                         <TileContent>
                             <NumericContent value="10" icon="sap-icon://building"></NumericContent>
