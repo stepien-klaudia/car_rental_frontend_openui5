@@ -33,7 +33,8 @@
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Nadchodzące przeglądy"
                         subheader="Kontroluj stan swoich pojazdów"
-                        press="onTilePress">
+                        press="onTilePress"
+                        ariaLabel="UpcomingInspections">
                         <TileContent unit="Samochody wymagające przeglądu">
                             <NumericContent value="1" icon="sap-icon://insurance-car"></NumericContent>
                         </TileContent>  

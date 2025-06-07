@@ -65,6 +65,11 @@
                 "pattern": "vehicle/{id}/edit",
                 "name": "VehicleEdit",
                 "target": "VehicleEdit"
+            },
+            {
+                "pattern": "upcoming_inspections",
+                "name":"UpcomingInspections",
+                "target": "UpcomingInspections"
             }
         ],
         "targets":
@@ -96,6 +101,10 @@
             "VehicleEdit":
             {
                 "viewName":"VehicleEdit"
+            },
+            "UpcomingInspections":
+            {
+                "viewName":"UpcomingInspections"
             }
         }
         }
