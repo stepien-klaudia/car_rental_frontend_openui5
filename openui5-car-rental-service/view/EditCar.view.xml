@@ -21,16 +21,41 @@
                 showCloseButton="true"
                 class="sapUiMediumMarginBottom"
                 ></MessageStrip>
-                <OverflowToolbar >
+                <OverflowToolbar height="4.5rem">
+                <VBox >
+                    <Label text="Numer rejestracyjny:" labelFor="nrRejSearch" />
                     <SearchField id="nrRejSearch" width="12rem" placeholder="Numer rejestracyjny">
                         <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
                     </SearchField>
+                </VBox>
+                <VBox >
+                    <Label text="Marka:" labelFor="MarkaSearch" />
                     <SearchField id="MarkaSearch" width="12rem" placeholder="Marka">
                         <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
                     </SearchField>
+                </VBox>    
+                <VBox >
+                    <Label text="Status:" labelFor="StatusSearch" />
+                    <SearchField id = "StatusSearch" width="12rem" placeholder="Status">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </SearchField>
+                </VBox>
+                <VBox >
+                    <Label text="Typ:" labelFor="TypSearch" />
+                    <Select id = "TypSearch">
+                                    <!-- <core:Item key="{typ_key}" text="{typ_text}"></core:Item> -->
+                                    <core:Item key = "" text="" />
+                                    <core:Item key="ekonomiczny" text="Ekonomiczny" />
+                                    <core:Item key="standard" text="Standard" />
+                                    <core:Item key="premium" text="Premium" />
+                                    <core:Item key="luksusowy" text="Luksusowy" />
+                    </Select>
+                </VBox>
+                <ToolbarSpacer ></ToolbarSpacer>
+                <Button text = "Filtruj" type = "Emphasized" icon="sap-icon://filter" press = "onFilterPress"></Button>  
+                <Button text = "Wyczyść filtry" type="Emphasized" icon="sap-icon://clear-filter" press="onClearPress"></Button> 
                 </OverflowToolbar>
-                
-        
+                    
     </VBox>
     </Page>
 </App>
