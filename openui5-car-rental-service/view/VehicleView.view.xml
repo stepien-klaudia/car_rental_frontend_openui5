@@ -1,0 +1,185 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.VehicleView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+     <App>
+        <Page showNavButton="true" navButtonPress="onNavPress">
+            <f:ShellBar 
+            title="Wyświetlanie danych pojazdu"
+            secondTitle="Zarządzanie flotą / Edycja danych pojazdów"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+            <MessageStrip 
+                text="Ten widok służy tylko do przeglądania danych samochodu, aby edytować je należy wrócić do listy i kliknąć przy pojeździe przycisk 'Edytuj'"
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+            ></MessageStrip>
+            <form:Form 
+            id = "VehicleViewForm"
+            editable="false"
+            >
+            <form:title>
+                <core:Title text="Dane pojazdu"></core:Title>
+            </form:title>
+            <form:layout>
+                <form:ResponsiveGridLayout 
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="3"
+                adjustLabelSpan="true"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="4"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="true"></form:ResponsiveGridLayout>
+            </form:layout>
+            <form:formContainers>
+                <form:FormContainer>
+                    <form:title>
+                        <core:Title text = "Dane administracyjne"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label="Numer rejestracyjny">
+                            <form:fields>
+                                <Input id="VehicleViewRejNr" required="true" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Rok produkcji">
+                            <form:fields>
+                                <MaskInput editable="false" mask="DCCC" placeholderSymbol="_" id="VehicleViewProdYr" required="true" change=".onProductionYearChange">
+                                    <rules>
+                                        <MaskInputRule maskFormatSymbol="C" regex="[0-9]"></MaskInputRule>
+                                        <MaskInputRule maskFormatSymbol="D" regex="[1-9]"></MaskInputRule>
+                                    </rules>
+                                </MaskInput>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Przebieg">
+                            <form:fields>
+                                <Input editable="false" type="Number" id="VehicleViewPrzebieg" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Data końca ważności przeglądu">
+                            <form:fields>
+                                <DatePicker editable="false" id="VehicleViewPrzeglDat" class="sapUiSmallMarginBottom" required="true"></DatePicker>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Data końca ważności ubezpieczenia">
+                            <form:fields>
+                                <DatePicker editable="false" id="VehicleViewUbezpDat" class="sapUiSmallMarginBottom" required="true"></DatePicker>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer>
+                    <form:title>
+                        <core:Title text="Dane o samochodzie"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label="Marka">
+                            <form:fields>
+                                <Select id = "VehicleViewMarka" editable="false">
+                                    <!-- <core:Item key="{ marka_key }" text="{marka_text}"></core:Item> -->
+                                    <core:Item key="BMW" text="BMW" />
+                                    <core:Item key="Audi" text="Audi" />
+                                    <core:Item key="Toyota" text="Toyota" />
+                                    <core:Item key = "Volkswagen" text="Volkswagen"/>
+                                    <core:Item key = "Mercedes" text="Mercedes"/>
+                                    <core:Item key="Ford" text="Ford"/>
+                                    <core:Item key="Honda" text="Honda"/>
+                                    <core:Item key="Hyundai" text="Hyundai"/>
+                                    <core:Item key="Kia" text="Kia"/>
+                                    <core:Item key="Renault" text="Renault"/>
+                                    <core:Item key="Peugeot" text="Peugeot"/>
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Model">
+                            <form:fields>
+                                <!-- <Select>
+                                    <core:Item key = "{model_key}" text="{model_text}"></core:Item>
+                                </Select> -->
+                                <Input id = "VehicleViewModel" required="true" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Liczba drzwi">
+                            <form:fields>
+                                <MaskInput mask="D" id="VehicleViewDoor" required="true" editable="false">
+                                    <rules>
+                                        <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
+                                    </rules>
+                                </MaskInput>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Przeznaczenie">
+                            <form:fields>
+                                <Select id = "VehicleViewPrzeznaczenie" editable="false">
+                                    <!-- <core:Item key="{przeznaczenie_key}" text="{przeznaczenie_text}"></core:Item> -->
+                                    <core:Item key="osobowy" text="Samochód osobowy" />
+                                    <core:Item key="dostawczy" text="Samochód dostawczy" />
+                                    <core:Item key="terenowy" text="Samochód terenowy" />
+                                    <core:Item key="sportowy" text="Samochód sportowy" />
+                                    <core:Item key="ciężarowy" text="Samochód ciężarowy" />
+                                    <core:Item key="kempingowy" text="Samochód kempingowy" />
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                    <form:FormElement label="Napęd">
+                        <form:fields>
+                            <Select id = "VehicleViewNaped" editable="false">
+                                <!-- <core:Item key="{naped_key}" text="{naped_text}"></core:Item> -->
+                                <core:Item key="benzyna" text="Benzyna" />
+                                <core:Item key="diesel" text="Diesel" />
+                                <core:Item key="hybrydowy" text="Hybrydowy" />
+                                <core:Item key="elektryczny" text="Elektryczny" />
+                                <core:Item key="wodorowy" text="Wodorowy" />
+                                <core:Item key="gazowy" text="LPG/CNG (gazowy)" />
+                            </Select>
+                        </form:fields>
+                    </form:FormElement>
+                </form:FormContainer>
+                <form:FormContainer>
+                    <form:title>
+                        <core:Title text="Dane na potrzeby wypożyczalni" ></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label="Typ">
+                            <form:fields>
+                                <Select id = "VehicleViewType" editable="false">
+                                    <!-- <core:Item key="{typ_key}" text="{typ_text}"></core:Item> -->
+                                    <core:Item key="ekonomiczny" text="Ekonomiczny" />
+                                    <core:Item key="standard" text="Standard" />
+                                    <core:Item key="premium" text="Premium" />
+                                    <core:Item key="luksusowy" text="Luksusowy" />
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Wiek pojazdu" >
+                            <form:fields>
+                                <Input id="VehicleViewAge" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label="Bezwypadkowy">
+                            <form:fields>
+                                <CheckBox id="VehicleViewBezwypadkowy" editable="false"></CheckBox>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+            </form:formContainers>
+            </form:Form>
+            </VBox>
+        </Page>
+    </App>
+</mvc:View>

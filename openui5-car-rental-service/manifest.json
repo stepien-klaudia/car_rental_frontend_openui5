@@ -57,7 +57,7 @@
                 "target":"EditCar"
             },
             {
-                "pattern":"vehicle/{id]/view",
+                "pattern":"vehicle/{id}/view",
                 "name": "VehicleView",
                 "target": "VehicleView"
             }

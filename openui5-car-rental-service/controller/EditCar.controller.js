@@ -74,6 +74,12 @@ sap.ui.define([
 
     onFilterPress: function (){
       // dodać filtrowanie
+    },
+
+    onViewPress: function (){
+      // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
+      const id = 1;
+      this.getOwnerComponent().getRouter().navTo("VehicleView", { id });
     }
     })
   });
