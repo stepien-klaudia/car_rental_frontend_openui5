@@ -5,8 +5,10 @@ sap.ui.define([
 	"sap/m/Dialog",
 	"sap/m/Button",
 	"sap/m/library",
-	"sap/m/Text"
-  ], function (Controller, JSONModel, coreLibrary, Dialog, Button, mobileLibrary, Text) {
+	"sap/m/Text",
+    "sap/m/MessageBox",
+    "sap/ui/core/BusyIndicator"
+  ], function (Controller, JSONModel, coreLibrary, Dialog, Button, mobileLibrary, Text, MessageBox, BusyIndicator) {
     "use strict";
     // shortcut for sap.m.ButtonType
 	var ButtonType = mobileLibrary.ButtonType;
@@ -20,16 +22,16 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.NewCar", {
   
       onInit: function () {
-        var oBrandsModel = new JSONModel([
-            { "BrandId": "AUDI", "BrandName": "Audi" },
-            { "BrandId": "BMW", "BrandName": "BMW" },
-            { "BrandId": "FORD", "BrandName": "Ford" },
-            { "BrandId": "HONDA", "BrandName": "Honda" },
-            { "BrandId": "MERC", "BrandName": "Mercedes-Benz" },
-            { "BrandId": "TOYOTA", "BrandName": "Toyota" },
-            { "BrandId": "VOLVO", "BrandName": "Volvo" }
-        ]);
-        this.getView().setModel(oBrandsModel, "marka");
+        // var oBrandsModel = new JSONModel([
+        //     { "BrandId": "AUDI", "BrandName": "Audi" },
+        //     { "BrandId": "BMW", "BrandName": "BMW" },
+        //     { "BrandId": "FORD", "BrandName": "Ford" },
+        //     { "BrandId": "HONDA", "BrandName": "Honda" },
+        //     { "BrandId": "MERC", "BrandName": "Mercedes-Benz" },
+        //     { "BrandId": "TOYOTA", "BrandName": "Toyota" },
+        //     { "BrandId": "VOLVO", "BrandName": "Volvo" }
+        // ]);
+        // this.getView().setModel(oBrandsModel, "marka");
 
             // Inicjalizacja ValueHelpDialog, ale bez otwierania go od razu
         this._oValueHelpDialog = null;
@@ -75,7 +77,49 @@ sap.ui.define([
     this._oProfileMenu.openBy(oButton);
     },
 
+    validateRequiredFields: function () {
+        const oView = this.getView();
+        let bAllValid = true;
+
+        // Pobierz wszystkie Inputy w widoku (rekurencyjnie)
+        oView.findElements(true).forEach(function (oControl) {
+            if (
+            !oControl.isA("sap.m.Select") &&
+            (oControl.getRequired && oControl.getRequired() &&
+            oControl.getEditable()) // pomiń nieedytowalne pola
+            ) {
+        const sValue = oControl.getValue();
+        if (!sValue) {
+            oControl.setValueState("Error");
+            oControl.setValueStateText("To pole jest wymagane");
+            bAllValid = false;
+        } else {
+            oControl.setValueState("None");
+        }
+        }
+        else if (
+            oControl.isA("sap.m.Select")
+        ){
+            const sValue = oControl.getSelectedKey();
+            if (!sValue) {
+            oControl.setValueState("Error");
+            oControl.setValueStateText("To pole jest wymagane");
+            bAllValid = false;
+            } else {
+            oControl.setValueState("None");
+            }
+        }
+    });
+
+    return bAllValid;
+    },
+
+
     onAcceptPress: function (){
+        if(!this.validateRequiredFields()){
+            MessageBox.error("Wypełnij wszystkie pola obowiązkowe!");
+            return;
+        }
         this.oAcceptAproveMessage = new Dialog({
             type: DialogType.Message,
             title: "Potwierdzenie",
@@ -84,7 +128,58 @@ sap.ui.define([
                 type: ButtonType.Emphasized,
                 text: "Tak",
                 press: function () {
+                    const nr_rejestracyjny = this.byId("nr_rejestracyjny").getValue();
+                    const rok_produkcji = this.byId("rok_produkcji").getValue();
+                    const przebieg = this.byId("przebieg").getValue();
+                    const data_przeglad = this.byId("data_przeglad").getValue();
+                    const data_ubezpieczenie = this.byId("data_ubezpieczenie").getValue();
+                    const marka = this.byId("marka").getSelectedKey();
+                    const model = this.byId("model").getValue();
+                    const liczba_drzwi = this.byId("liczba_drzwi").getValue();
+                    const przeznaczenie = this.byId("przeznaczenie").getSelectedKey();
+                    const naped = this.byId("naped").getSelectedKey();
+                    const typ = this.byId("typ").getSelectedKey();
+                    const bezwypadkowy = this.byId("bezwypadkowy").getSelected();
+                    const wiek_auta = this.byId("wiek_auta").getValue();
                     //insert do bazy - ewentualnie powiadomienie o błędzie
+                    const oData = {
+                        nr_rejestracyjny: nr_rejestracyjny,
+                        year: rok_produkcji,
+                        przebieg: przebieg,
+                        data_przeglad: data_przeglad,
+                        data_ubezpieczenie: data_ubezpieczenie,
+                        brand: marka,
+                        model: model,
+                        liczba_drzwi: liczba_drzwi,
+                        przeznaczenie: przeznaczenie,
+                        naped: naped,
+                        type: typ,
+                        wiek_auta: wiek_auta,
+                        bezwypadkowy: bezwypadkowy
+                    };
+                    BusyIndicator.show(0);
+                    $.ajax({
+                        url: "http://localhost:8090/api/branches/1/vehicles", //endpoint
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(oData),
+                        success: function () {
+                            // sap.m.MessageToast.show("Dane zapisane do bazy!");
+                            sap.m.MessageBox.success("Dane zostały zapisane do bazy", {
+                                onClose: function (oAction){
+                                     this.getOwnerComponent().getRouter().navTo("Main",{},true);
+                                }.bind(this)
+                            }); 
+                        }.bind(this),
+                        error: function (){
+                            sap.m.MessageBox.error("Podczas zapisu wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
+                                 this.getOwnerComponent().getRouter().navTo("Main",{},true);
+                            }.bind(this)});
+                        }.bind(this),
+                        complete: function () {
+                            BusyIndicator.hide();
+                        }
+                    });
                 }.bind(this)
             }),
             endButton: new Button({
@@ -95,7 +190,8 @@ sap.ui.define([
                 }.bind(this)
             })
             
-        })
+        }
+    )
         this.oAcceptAproveMessage.open();
 
     },
@@ -122,7 +218,27 @@ sap.ui.define([
             
         })
         this.oRejectAproveMessage.open();
-    }
+    },
+
+     onProductionYearChange: function (oEvent){
+        const sYear = oEvent.getParameter("value");
+        const iYear = parseInt(sYear, 10);
+        const currentYear = new Date().getFullYear();
+
+        const oInput = this.byId("rok_produkcji");
+        const oAge = this.byId("wiek_auta");
+
+        if(isNaN(iYear) || iYear > currentYear || iYear < 1900){
+            return;
+        }
+
+        const age = currentYear - iYear;
+
+        oAge.setValue(age);
+
+     }
   
     });
   });
+
+ 

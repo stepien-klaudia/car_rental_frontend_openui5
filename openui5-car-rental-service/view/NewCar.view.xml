@@ -51,12 +51,12 @@
                     <form:formElements>
                         <form:FormElement label="Numer rejestracyjny">
                             <form:fields>
-                                <Input value="{nr_rejestracyjny}" id="nr_rejestracyjny" required="true"></Input>
+                                <Input id="nr_rejestracyjny" required="true"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label="Rok produkcji">
                             <form:fields>
-                                <MaskInput mask="DCCC" placeholderSymbol="_" value="{rok_produkcji}" id="rok_produkcji" required="true">
+                                <MaskInput mask="DCCC" placeholderSymbol="_" id="rok_produkcji" required="true" change=".onProductionYearChange">
                                     <rules>
                                         <MaskInputRule maskFormatSymbol="C" regex="[0-9]"></MaskInputRule>
                                         <MaskInputRule maskFormatSymbol="D" regex="[1-9]"></MaskInputRule>
@@ -66,17 +66,17 @@
                         </form:FormElement>
                         <form:FormElement label="Przebieg">
                             <form:fields>
-                                <Input type="Number" value="{przebieg}" id="przebieg" required="true"></Input>
+                                <Input type="Number" id="przebieg" required="true"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label="Data końca ważności przeglądu">
                             <form:fields>
-                                <DatePicker id="data_przeglad" value="" class="sapUiSmallMarginBottom" required="true"></DatePicker>
+                                <DatePicker id="data_przeglad" class="sapUiSmallMarginBottom" required="true"></DatePicker>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label="Data końca ważności ubezpieczenia">
                             <form:fields>
-                                <DatePicker id="data_ubezpieczenie" value="" class="sapUiSmallMarginBottom" required="true"></DatePicker>
+                                <DatePicker id="data_ubezpieczenie" class="sapUiSmallMarginBottom" required="true"></DatePicker>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
@@ -88,7 +88,7 @@
                     <form:formElements>
                         <form:FormElement label="Marka">
                             <form:fields>
-                                <Select>
+                                <Select id = "marka">
                                     <!-- <core:Item key="{ marka_key }" text="{marka_text}"></core:Item> -->
                                     <core:Item key="BMW" text="BMW" />
                                     <core:Item key="Audi" text="Audi" />
@@ -109,12 +109,12 @@
                                 <!-- <Select>
                                     <core:Item key = "{model_key}" text="{model_text}"></core:Item>
                                 </Select> -->
-                                <Input id = "model" value = "{model}" required="true"></Input>
+                                <Input id = "model" required="true"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label="Liczba drzwi">
                             <form:fields>
-                                <MaskInput mask="D" id="liczba_drzwi" value="{liczba_drzwi}" required="true">
+                                <MaskInput mask="D" id="liczba_drzwi" required="true">
                                     <rules>
                                         <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
                                     </rules>
@@ -123,16 +123,28 @@
                         </form:FormElement>
                         <form:FormElement label="Przeznaczenie">
                             <form:fields>
-                                <Select >
-                                    <core:Item key="{przeznaczenie_key}" text="{przeznaczenie_text}"></core:Item>
+                                <Select id = "przeznaczenie">
+                                    <!-- <core:Item key="{przeznaczenie_key}" text="{przeznaczenie_text}"></core:Item> -->
+                                    <core:Item key="osobowy" text="Samochód osobowy" />
+                                    <core:Item key="dostawczy" text="Samochód dostawczy" />
+                                    <core:Item key="terenowy" text="Samochód terenowy" />
+                                    <core:Item key="sportowy" text="Samochód sportowy" />
+                                    <core:Item key="ciężarowy" text="Samochód ciężarowy" />
+                                    <core:Item key="kempingowy" text="Samochód kempingowy" />
                                 </Select>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
                     <form:FormElement label="Napęd">
                         <form:fields>
-                            <Select >
-                                <core:Item key="{naped_key}" text="{naped_text}"></core:Item>
+                            <Select id = "naped">
+                                <!-- <core:Item key="{naped_key}" text="{naped_text}"></core:Item> -->
+                                <core:Item key="benzyna" text="Benzyna" />
+                                <core:Item key="diesel" text="Diesel" />
+                                <core:Item key="hybrydowy" text="Hybrydowy" />
+                                <core:Item key="elektryczny" text="Elektryczny" />
+                                <core:Item key="wodorowy" text="Wodorowy" />
+                                <core:Item key="gazowy" text="LPG/CNG (gazowy)" />
                             </Select>
                         </form:fields>
                     </form:FormElement>
@@ -144,19 +156,23 @@
                     <form:formElements>
                         <form:FormElement label="Typ">
                             <form:fields>
-                                <Select>
-                                    <core:Item key="{typ_key}" text="{typ_text}"></core:Item>
+                                <Select id = "typ">
+                                    <!-- <core:Item key="{typ_key}" text="{typ_text}"></core:Item> -->
+                                    <core:Item key="ekonomiczny" text="Ekonomiczny" />
+                                    <core:Item key="standard" text="Standard" />
+                                    <core:Item key="premium" text="Premium" />
+                                    <core:Item key="luksusowy" text="Luksusowy" />
                                 </Select>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label="Wiek pojazdu">
                             <form:fields>
-                                <Input id="wiek_auta" value="{wiek_auta}" ></Input>
+                                <Input id="wiek_auta"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label="Bezwypadkowy">
                             <form:fields>
-                                <CheckBox valueState="{bezwypadkowy}" id="bezwypadkowy"></CheckBox>
+                                <CheckBox id="bezwypadkowy"></CheckBox>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
