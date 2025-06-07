@@ -87,6 +87,7 @@
                                     <Button icon = "sap-icon://detail-view" press = ".onViewPress" text="Wyświetl" class="sapUiSmallMarginBegin"></Button>
                                     <Button icon = "sap-icon://edit" press=".onEditPress" text="Edytuj" class="sapUiSmallMarginBegin"></Button>
                                     <Button icon = "sap-icon://busy" press = ".onBlockPress" text="Zablokuj" class="sapUiSmallMarginBegin"></Button>
+                                    <Button icon = "sap-icon://busy" press = ".onUnblockPress" text="Odblokuj" class="sapUiSmallMarginBegin"></Button>
                                     <Button type = "Reject" icon="sap-icon://delete" press=".onDeletePress" text="Usuń" class="sapUiSmallMarginBegin"></Button>
                                 </items>
                                 </HBox>

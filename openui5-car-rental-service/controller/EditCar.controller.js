@@ -5,8 +5,10 @@ sap.ui.define([
 	"sap/m/Dialog",
 	"sap/m/Button",
 	"sap/m/library",
-	"sap/m/Text"
-  ], function (Controller, JSONModel, coreLibrary, Dialog, Button, mobileLibrary, Text) {
+	"sap/m/Text",
+  "sap/ui/core/BusyIndicator",
+  "sap/m/MessageBox"
+  ], function (Controller, JSONModel, coreLibrary, Dialog, Button, mobileLibrary, Text, BusyIndicator, MessageBox) {
     "use strict";
     // shortcut for sap.m.ButtonType
 	var ButtonType = mobileLibrary.ButtonType;
@@ -86,6 +88,53 @@ sap.ui.define([
       // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
       const id = 1;
       this.getOwnerComponent().getRouter().navTo("VehicleEdit", { id });
+    },
+
+    onBlockPress: function (){
+      // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
+      const id = 1;
+      this.oBlockApproveMessage = new Dialog({
+        type: DialogType.Message,
+        title: "Potwierdzenie",
+        content: new Text({text: "Czy na pewno chcesz zablokować pojazd?"}),
+        beginButton: new Button({
+          type: ButtonType.Emphasized,
+          text: "Tak",
+          press: function () {
+            BusyIndicator.show(0);
+            $.ajax({
+              url: "http://localhost:8090/api/vehicles/${id}/lock",
+              type: "PATCH",
+              success: function () {
+                  // sap.m.MessageToast.show("Dane zapisane do bazy!");
+                  sap.m.MessageBox.success("Dane zostały zaktualizowane", {
+                      onClose: function (oAction){
+                          // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
+                          location.reload();
+                      }.bind(this)
+                  }); 
+              }.bind(this),
+              error: function (){
+                  sap.m.MessageBox.error("Podczas zapisu wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
+                      // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
+                      location.reload();
+                  }.bind(this)});
+              }.bind(this),
+              complete: function () {
+                  BusyIndicator.hide();
+              }
+          });
+        }.bind(this)
+      }),
+      endButton: new Button({
+                type: ButtonType.Emphasized,
+                text: "Nie",
+                press: function (){
+                    this.oBlockApproveMessage.close();
+                }.bind(this)
+            })
+    })
+    this.oBlockApproveMessage.open();
     }
     })
   });
