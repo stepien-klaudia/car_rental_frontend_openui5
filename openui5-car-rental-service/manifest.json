@@ -110,6 +110,11 @@
                 "pattern":"branch/{id}/view",
                 "name": "BranchView",
                 "target": "BranchView"
+            },
+            {
+                "pattern":"branch/{id}/edit",
+                "name": "BranchEdit",
+                "target": "BranchEdit"
             }
         ],
         "targets":
@@ -177,6 +182,10 @@
             "BranchView":
             {
                 "viewName": "BranchView"
+            },
+            "BranchEdit":
+            {
+                "viewName": "BranchEdit"
             }
         }
         }
