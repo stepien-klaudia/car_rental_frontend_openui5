@@ -106,9 +106,10 @@
                         </form:FormElement>
                         <form:FormElement label="Model">
                             <form:fields>
-                                <Select>
+                                <!-- <Select>
                                     <core:Item key = "{model_key}" text="{model_text}"></core:Item>
-                                </Select>
+                                </Select> -->
+                                <Input id = "model" value = "{model}" required="true"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label="Liczba drzwi">
