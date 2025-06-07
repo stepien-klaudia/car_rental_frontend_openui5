@@ -17,7 +17,7 @@ sap.ui.define([
 	// shortcut for sap.ui.core.ValueState
 	var ValueState = coreLibrary.ValueState;
   
-    return Controller.extend("openui5-car-rental-service.controller.NewCar", {
+    return Controller.extend("openui5-car-rental-service.controller.EditCar", {
   
       onInit: function () {
         

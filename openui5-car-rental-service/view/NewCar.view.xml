@@ -3,7 +3,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     displayBlock="true">
-    
+     <App>
         <Page id="page_new_car" showNavButton="true" navButtonPress="onNavPress">
             <f:ShellBar 
             title="Nowy Pojazd"
