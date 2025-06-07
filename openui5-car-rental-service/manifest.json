@@ -70,6 +70,11 @@
                 "pattern": "upcoming_inspections",
                 "name":"UpcomingInspections",
                 "target": "UpcomingInspections"
+            },
+            {
+                "pattern": "new_client",
+                "name":"NewClient",
+                "target":"NewClient"
             }
         ],
         "targets":
@@ -105,6 +110,10 @@
             "UpcomingInspections":
             {
                 "viewName":"UpcomingInspections"
+            },
+            "NewClient":
+            {
+                "viewName": "NewClient"
             }
         }
         }

@@ -67,6 +67,7 @@
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Nowy klient"
                         subheader="Dodaj nowego klienta do bazy"
+                        ariaLabel="NewClient"
                         press="onTilePress">
                         <TileContent>
                             <ImageContent src="sap-icon://add-contact"/>
