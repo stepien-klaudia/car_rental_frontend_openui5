@@ -55,7 +55,45 @@
                 <Button text = "Filtruj" type = "Emphasized" icon="sap-icon://filter" press = "onFilterPress"></Button>  
                 <Button text = "Wyczyść filtry" type="Emphasized" icon="sap-icon://clear-filter" press="onClearPress"></Button> 
                 </OverflowToolbar>
-                    
+                <Table id = "CarsTable" inset="false">
+                    <columns>
+                        <Column width="12rem">
+                            <Text text="Numer rejestracyjny"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Marka"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Model"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Typ"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Status"></Text>
+                        </Column>
+                        <Column ></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem >
+                            <cells>
+                                <Text text = "{nr_rejestracyjny}"></Text>
+                                <Text text="{marka}"></Text>
+                                <Text text="{model}"></Text>
+                                <Text text="{typ}"></Text>
+                                <Text text="{status}"></Text>
+                                <HBox justifyContent="End">
+                                <items>
+                                    <Button icon = "sap-icon://detail-view" press = ".onViewPress" text="Wyświetl" class="sapUiSmallMarginBegin"></Button>
+                                    <Button icon = "sap-icon://edit" press=".onEditPress" text="Edytuj" class="sapUiSmallMarginBegin"></Button>
+                                    <Button icon = "sap-icon://busy" press = ".onBlockPress" text="Zablokuj" class="sapUiSmallMarginBegin"></Button>
+                                    <Button type = "Reject" icon="sap-icon://delete" press=".onDeletePress" text="Usuń" class="sapUiSmallMarginBegin"></Button>
+                                </items>
+                                </HBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>                   
     </VBox>
     </Page>
 </App>
