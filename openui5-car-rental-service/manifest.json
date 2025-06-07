@@ -55,6 +55,11 @@
                 "pattern":"edit_car",
                 "name":"EditCar",
                 "target":"EditCar"
+            },
+            {
+                "pattern":"vehicle/{id]/view",
+                "name": "VehicleView",
+                "target": "VehicleView"
             }
         ],
         "targets":
@@ -78,6 +83,10 @@
             "EditCar":
             {
                 "viewName":"EditCar"
+            },
+            "VehicleView":
+            {
+                "viewName":"VehicleView"
             }
         }
         }

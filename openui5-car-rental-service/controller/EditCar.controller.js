@@ -20,7 +20,7 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.EditCar", {
   
       onInit: function () {
-        
+        // pobranie danych z bazy vechicles
       },
 
       onNavPress: function () {
