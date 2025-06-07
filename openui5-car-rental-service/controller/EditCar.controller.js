@@ -61,6 +61,19 @@ sap.ui.define([
     });
     }
     this._oProfileMenu.openBy(oButton);
+    },
+
+    onClearPress: function (){
+      this.byId("nrRejSearch").setValue("");
+      this.byId("MarkaSearch").setValue("");
+      this.byId("TypSearch").setValue("");
+      this.byId("StatusSearch").setValue("");
+
+    // dodać tutaj funkcję do filtrowania
+    },
+
+    onFilterPress: function (){
+      // dodać filtrowanie
     }
     })
   });
