@@ -80,6 +80,12 @@ sap.ui.define([
       // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
       const id = 1;
       this.getOwnerComponent().getRouter().navTo("VehicleView", { id });
+    },
+
+    onEditPress: function (){
+      // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
+      const id = 1;
+      this.getOwnerComponent().getRouter().navTo("VehicleEdit", { id });
     }
     })
   });

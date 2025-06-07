@@ -60,6 +60,11 @@
                 "pattern":"vehicle/{id}/view",
                 "name": "VehicleView",
                 "target": "VehicleView"
+            },
+            {
+                "pattern": "vehicle/{id}/edit",
+                "name": "VehicleEdit",
+                "target": "VehicleEdit"
             }
         ],
         "targets":
@@ -87,6 +92,10 @@
             "VehicleView":
             {
                 "viewName":"VehicleView"
+            },
+            "VehicleEdit":
+            {
+                "viewName":"VehicleEdit"
             }
         }
         }
