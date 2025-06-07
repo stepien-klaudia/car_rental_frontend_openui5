@@ -1,4 +1,4 @@
-<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+<mvc:View xmlns:richtexteditor="sap.ui.richtexteditor"  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
     controllerName="openui5-car-rental-service.controller.ClientView"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
@@ -15,7 +15,8 @@
             </f:ShellBar>
             <VBox class="sapUiSmallMargin">
             <MessageStrip 
-                text="Z tego widoku nie można edytować danych klienta. Jeżeli chcesz to zrobić, wróć do listy klientów i naciśnij 'Edytuj'"
+                text="Z tego widoku nie można edytować danych klienta. Jeżeli chcesz to zrobić, wróć do listy klientów i naciśnij 'Edytuj'. Powrót przez strzałkę w aplikacji przeniesie cię automatycznie do listy wszystkich klientów niebędących na czarnej liście. Jeżeli chcesz wrócić do czarnej listy, użyj powrotu w oknie przeglądarki."
+                enableFormattedText="true"
                 showIcon="true"
                 showCloseButton="true"
                 class="sapUiMediumMarginBottom"
