@@ -100,6 +100,7 @@
                     <GenericTile 
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Dodaj konto pracownika"
+                        ariaLabel="NewEmployee"
                         press="onTilePress">
                         <TileContent>
                             <ImageContent src="sap-icon://add-employee"></ImageContent>

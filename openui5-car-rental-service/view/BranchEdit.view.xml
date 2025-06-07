@@ -1,0 +1,132 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.BranchEdit"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+     <App>
+        <Page showNavButton="true" navButtonPress="onNavPress">
+            <f:ShellBar 
+            title="Nowy Punkt"
+            secondTitle="Zarządzanie punktami"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+            <MessageStrip 
+                text="Zaktualizuj dane na formularzu i kliknij przycisk 'Zapisz' na dole ekranu"
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+            ></MessageStrip>
+            <form:Form 
+            editable="true"
+            >
+            <form:title>
+                <core:Title text="Aktualizuj dane punktu"></core:Title>
+            </form:title>
+            <form:layout>
+                <form:ResponsiveGridLayout 
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="3"
+                adjustLabelSpan="true"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="4"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="true"></form:ResponsiveGridLayout>
+            </form:layout>
+            <form:formContainers>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane punktu"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Nazwa punktu" >
+                            <form:fields>
+                                <Input id = "BranchEditName" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text="Dane adresowe"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Ulica">
+                            <form:fields>
+                                <Input id = "BranchEditUlica" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Numer domu">
+                            <form:fields>
+                                <Input id = "BranchEditHouseNr" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Numer lokalu">
+                            <form:fields>
+                                <Input id = "BranchEditLocNr" required="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Kod pocztowy">
+                            <form:fields>
+                                <MaskInput mask = "DD-DDD" id = "BranchEditPostalCode" required="true">
+                                    <rules>
+                                        <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
+                                    </rules>
+                                </MaskInput>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Miasto">
+                            <form:fields>
+                                <Input id = "BranchEditCity" required="true"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Województwo">
+                            <form:fields>
+                                <Select id = "BranchEditRegion">
+                                    <core:Item key="DS" text="Dolnośląskie" />
+                                    <core:Item key="KP" text="Kujawsko-pomorskie" />
+                                    <core:Item key="LU" text="Lubelskie" />
+                                    <core:Item key="LB" text="Lubuskie" />
+                                    <core:Item key="LD" text="Łódzkie" />
+                                    <core:Item key="MA" text="Małopolskie" />
+                                    <core:Item key="MZ" text="Mazowieckie" />
+                                    <core:Item key="OP" text="Opolskie" />
+                                    <core:Item key="PK" text="Podkarpackie" />
+                                    <core:Item key="PD" text="Podlaskie" />
+                                    <core:Item key="PM" text="Pomorskie" />
+                                    <core:Item key="SL" text="Śląskie" />
+                                    <core:Item key="SK" text="Świętokrzyskie" />
+                                    <core:Item key="WN" text="Warmińsko-mazurskie" />
+                                    <core:Item key="WP" text="Wielkopolskie" />
+                                    <core:Item key="ZP" text="Zachodniopomorskie" />
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+            </form:formContainers>
+            </form:Form>
+            </VBox>
+            <footer>
+                <OverflowToolbar id="BranchEditFooter">
+                    <ToolbarSpacer ></ToolbarSpacer>
+                    <Button type="Accept" text="Zapisz" id="EditBranch" press="onAcceptPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                    <Button type="Reject" text="Anuluj" id="CancelEditBranch" press="onRejectPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                </OverflowToolbar>
+            </footer>
+        </Page>
+    </App>
+</mvc:View>

@@ -115,6 +115,11 @@
                 "pattern":"branch/{id}/edit",
                 "name": "BranchEdit",
                 "target": "BranchEdit"
+            },
+            {
+                "pattern":"new_employee",
+                "name": "NewEmployee",
+                "target": "NewEmployee"
             }
         ],
         "targets":
@@ -186,6 +191,10 @@
             "BranchEdit":
             {
                 "viewName": "BranchEdit"
+            },
+            "NewEmployee":
+            {
+                "viewName": "NewEmployee"
             }
         }
         }
