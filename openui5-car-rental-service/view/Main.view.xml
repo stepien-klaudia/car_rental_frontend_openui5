@@ -78,6 +78,7 @@
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Edytuj klientów"
                         subheader="Edytuj dane klienta lub wrzuć go na czarną listę"
+                        ariaLabel="EditClient"
                         press="onTilePress">
                         <TileContent>
                             <ImageContent src="sap-icon://employee-pane"></ImageContent>

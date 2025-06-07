@@ -75,6 +75,11 @@
                 "pattern": "new_client",
                 "name":"NewClient",
                 "target":"NewClient"
+            },
+            {
+                "pattern":"edit_cilent",
+                "name": "EditClient",
+                "target": "EditClient"
             }
         ],
         "targets":
@@ -114,6 +119,10 @@
             "NewClient":
             {
                 "viewName": "NewClient"
+            },
+            "EditClient":
+            {
+                "viewName": "EditClient"
             }
         }
         }
