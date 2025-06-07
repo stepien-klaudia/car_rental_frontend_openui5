@@ -140,6 +140,7 @@
                     <GenericTile 
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Dodaj punkt"
+                        ariaLabel="NewBranch"
                         press="onTilePress">
                         <TileContent>
                             <ImageContent src="sap-icon://globe"></ImageContent>

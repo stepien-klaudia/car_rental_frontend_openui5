@@ -95,6 +95,11 @@
                 "pattern": "blacklist",
                 "name": "BlackList",
                 "target": "BlackList"
+            },
+            {
+                "pattern": "new_branch",
+                "name": "NewBranch",
+                "target":"NewBranch"
             }
         ],
         "targets":
@@ -150,6 +155,10 @@
             "BlackList":
             {
                 "viewName": "BlackList"
+            },
+            "NewBranch":
+            {
+                "viewName":"NewBranch"
             }
         }
         }
