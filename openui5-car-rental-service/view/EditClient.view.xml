@@ -38,7 +38,7 @@
                 <Button text = "Filtruj" type = "Emphasized" icon="sap-icon://filter" press = "onFilterPress"></Button>  
                 <Button text = "Wyczyść filtry" type="Emphasized" icon="sap-icon://clear-filter" press="onClearPress"></Button> 
                 </OverflowToolbar>
-                <Table id = "ClientsTable" inset="false">
+                <Table id = "ClientsTable" inset="false" items="{/clients}">
                     <columns>
                         <Column width="12rem">
                             <Text text="Dowód osobisty"></Text>
@@ -64,14 +64,12 @@
                                 <Text text="{firstName}"></Text>
                                 <Text text="{lastName}"></Text>
                                 <Text text="{birthDate}"></Text>
-                                <Text text="{telNr}"></Text>
+                                <Text text="{phone}"></Text>
                                 <HBox justifyContent="End">
                                 <items>
                                     <Button icon = "sap-icon://detail-view" press = ".onViewPress" text="Wyświetl" class="sapUiSmallMarginBegin"></Button>
                                     <Button icon = "sap-icon://edit" press=".onEditPress" text="Edytuj" class="sapUiSmallMarginBegin"></Button>
                                     <Button icon = "sap-icon://busy" press = ".onBlockPress" text="Czarna lista" class="sapUiSmallMarginBegin"></Button>
-                                    <!-- <Button icon = "sap-icon://busy" press = ".onUnblockPress" text="Odblokuj" class="sapUiSmallMarginBegin"></Button> -->
-                                    <!-- <Button type = "Reject" icon="sap-icon://delete" press=".onDeletePress" text="Usuń" class="sapUiSmallMarginBegin"></Button> -->
                                 </items>
                                 </HBox>
                             </cells>

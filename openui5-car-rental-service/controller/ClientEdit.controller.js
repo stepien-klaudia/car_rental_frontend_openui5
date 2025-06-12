@@ -22,19 +22,27 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.ClientEdit", {
   
       onInit: function () {
-        // var oBrandsModel = new JSONModel([
-        //     { "BrandId": "AUDI", "BrandName": "Audi" },
-        //     { "BrandId": "BMW", "BrandName": "BMW" },
-        //     { "BrandId": "FORD", "BrandName": "Ford" },
-        //     { "BrandId": "HONDA", "BrandName": "Honda" },
-        //     { "BrandId": "MERC", "BrandName": "Mercedes-Benz" },
-        //     { "BrandId": "TOYOTA", "BrandName": "Toyota" },
-        //     { "BrandId": "VOLVO", "BrandName": "Volvo" }
-        // ]);
-        // this.getView().setModel(oBrandsModel, "marka");
+         var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.getRoute("ClientEdit").attachPatternMatched(this._onRouteMatched, this);
+      },
+      _onRouteMatched: function (oEvent) {
+        var sId = oEvent.getParameter("arguments").id;
+        var oModel = new JSONModel();
+        fetch("http://localhost:8090/api/clients/" + encodeURIComponent(sId))
+          .then (response => {
+            if(!response.ok) throw new Error ("Wystąpił błąd");
+            return response.json();
+          }) 
+          .then(data => {
+            
+            oModel.setData({client: data})
+          })
+          .catch(error => {
+            console.error("Błąd:", error)
+          });
 
-            // Inicjalizacja ValueHelpDialog, ale bez otwierania go od razu
-        this._oValueHelpDialog = null;
+          this.getView().setModel(oModel);
+
       },
   
       onNavPress: function () {
@@ -128,6 +136,8 @@ sap.ui.define([
                 type: ButtonType.Emphasized,
                 text: "Tak",
                 press: function () {
+                    const oModel = this.getView().getModel();
+                    const sId = oModel.getProperty("/client/id");
                     const firstName = this.byId("ClientEditFirstName").getValue();
                     const lastName = this.byId("ClientEditLastName").getValue();
                     const idNumber = this.byId("ClientEditIDNumber").getValue();
@@ -143,7 +153,7 @@ sap.ui.define([
                     };
                     BusyIndicator.show(0);
                     $.ajax({
-                        url: "http://localhost:8090/api/clients/${id}", //endpoint
+                        url: "http://localhost:8090/api/clients/" + encodeURIComponent(sId), //endpoint
                         type: "PUT",
                         contentType: "application/json",
                         data: JSON.stringify(oData),

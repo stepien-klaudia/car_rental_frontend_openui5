@@ -51,22 +51,22 @@
                     <form:formElements>
                         <form:FormElement label = "Imię">
                             <form:fields>
-                                <Input id = "ClientViewFirstName" required="true" editable="false"></Input>
+                                <Input value = "{/client/firstName}" id = "ClientViewFirstName" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Nazwisko">
                             <form:fields>
-                                <Input id = "ClientViewLastName" required="true" editable="false"></Input>
+                                <Input value = "{/client/lastName}" id = "ClientViewLastName" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Data urodzenia">
                             <form:fields>
-                                <DatePicker id = "ClientViewBirthDate" required="true" editable="false"></DatePicker>
+                                <DatePicker value = "{/client/birthDate}" id = "ClientViewBirthDate" required="true" editable="false"></DatePicker>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label= "Numer dowodu osobistego">
                             <form:fields>
-                                <Input id = "ClientViewIDNumber" required="true" editable="false"></Input>
+                                <Input value = "{/client/idNumber}" id = "ClientViewIDNumber" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
@@ -78,12 +78,12 @@
                     <form:formElements>
                         <form:FormElement label = "Adres email">
                             <form:fields>
-                                <Input id = "ClientViewEmail" required="true" editable="false"></Input>
+                                <Input value = "{/client/email}" id = "ClientViewEmail" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Numer telefonu">
                             <form:fields>
-                                <MaskInput id = "ClientViewTelNr" required="true" mask = "+48 DDD DDD DDD" editable="false">
+                                <MaskInput value = "{/client/phone}" id = "ClientViewTelNr" required="true" mask = "+48 DDD DDD DDD" editable="false">
                                     <rules>
                                         <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
                                     </rules>
