@@ -159,7 +159,7 @@ sap.ui.define([
                     };
                     BusyIndicator.show(0);
                     $.ajax({
-                        url: "http://localhost:8090/api/branches/1/vehicles", //endpoint
+                        url: "http://localhost:8090/api/vehicles", //endpoint
                         type: "POST",
                         contentType: "application/json",
                         data: JSON.stringify(oData),

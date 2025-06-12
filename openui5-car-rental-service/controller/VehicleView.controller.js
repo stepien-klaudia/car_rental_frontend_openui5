@@ -22,20 +22,30 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.VehicleView", {
   
       onInit: function () {
-        // var oBrandsModel = new JSONModel([
-        //     { "BrandId": "AUDI", "BrandName": "Audi" },
-        //     { "BrandId": "BMW", "BrandName": "BMW" },
-        //     { "BrandId": "FORD", "BrandName": "Ford" },
-        //     { "BrandId": "HONDA", "BrandName": "Honda" },
-        //     { "BrandId": "MERC", "BrandName": "Mercedes-Benz" },
-        //     { "BrandId": "TOYOTA", "BrandName": "Toyota" },
-        //     { "BrandId": "VOLVO", "BrandName": "Volvo" }
-        // ]);
-        // this.getView().setModel(oBrandsModel, "marka");
-
-            // Inicjalizacja ValueHelpDialog, ale bez otwierania go od razu
-        this._oValueHelpDialog = null;
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.getRoute("VehicleView").attachPatternMatched(this._onRouteMatched, this);
       },
+      _onRouteMatched: function (oEvent) {
+        var sId = oEvent.getParameter("arguments").id;
+        var oModel = new JSONModel();
+        fetch("http://localhost:8090/api/vehicles/" + encodeURIComponent(sId))
+          .then (response => {
+            if(!response.ok) throw new Error ("Wystąpił błąd");
+            return response.json();
+          }) 
+          .then(data => {
+            
+            oModel.setData({vehicle: data})
+          })
+          .catch(error => {
+            console.error("Błąd:", error)
+          });
+
+          this.getView().setModel(oModel);
+
+      },
+        
+        
   
       onNavPress: function () {
         this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
