@@ -6,7 +6,7 @@
      <App>
         <Page showNavButton="true" navButtonPress="onNavPress">
             <f:ShellBar 
-            title="Nowy Punkt"
+            title="Edycja danych punktu"
             secondTitle="Zarządzanie punktami"
             >
                 <f:profile>
@@ -50,7 +50,7 @@
                     <form:formElements>
                         <form:FormElement label = "Nazwa punktu" >
                             <form:fields>
-                                <Input id = "BranchEditName" required="true"></Input>
+                                <Input value="{/branch/name}" id = "BranchEditName" required="true"></Input>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
@@ -62,22 +62,22 @@
                     <form:formElements>
                         <form:FormElement label = "Ulica">
                             <form:fields>
-                                <Input id = "BranchEditUlica" required="true"></Input>
+                                <Input value="{/branch/branchUlica}" id = "BranchEditUlica" required="true"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Numer domu">
                             <form:fields>
-                                <Input id = "BranchEditHouseNr" required="true"></Input>
+                                <Input value="{/branch/branchHouseNr}" id = "BranchEditHouseNr" required="true"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Numer lokalu">
                             <form:fields>
-                                <Input id = "BranchEditLocNr" required="false"></Input>
+                                <Input value="{/branch/branchLocNr}" id = "BranchEditLocNr" required="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Kod pocztowy">
                             <form:fields>
-                                <MaskInput mask = "DD-DDD" id = "BranchEditPostalCode" required="true">
+                                <MaskInput value="{/branch/branchPostalCode}" mask = "DD-DDD" id = "BranchEditPostalCode" required="true">
                                     <rules>
                                         <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
                                     </rules>
@@ -86,12 +86,12 @@
                         </form:FormElement>
                         <form:FormElement label = "Miasto">
                             <form:fields>
-                                <Input id = "BranchEditCity" required="true"></Input>
+                                <Input value="{/branch/city}" id = "BranchEditCity" required="true"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Województwo">
                             <form:fields>
-                                <Select id = "BranchEditRegion">
+                                <Select selectedKey="{/branch/branchRegion}" id = "BranchEditRegion">
                                     <core:Item key="DS" text="Dolnośląskie" />
                                     <core:Item key="KP" text="Kujawsko-pomorskie" />
                                     <core:Item key="LU" text="Lubelskie" />

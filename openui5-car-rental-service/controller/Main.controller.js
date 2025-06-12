@@ -8,10 +8,17 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.Main", {
         onInit: function () {
             var oKpiModel = new sap.ui.model.json.JSONModel();
-            fetch("http://localhost:8090/api/clients/kpi")
-            .then((res) => res.json())
-            .then((data) => {
-            oKpiModel.setData({kpi:data});
+            Promise.all([
+                fetch("http://localhost:8090/api/clients/kpi").then((res) => res.json()),
+                fetch("http://localhost:8090/api/branches/kpi").then((res) => res.json())]
+            )
+            .then(([clientsKPI, branchesKPI]) => {
+            oKpiModel.setData(
+                {
+                    clientsKPI: clientsKPI,
+                    branchesKPI: branchesKPI
+                }
+            );
             }); 
             this.getView().setModel(oKpiModel);
         },

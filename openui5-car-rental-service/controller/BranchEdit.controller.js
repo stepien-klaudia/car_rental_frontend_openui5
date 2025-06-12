@@ -22,7 +22,27 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.BranchEdit", {
   
       onInit: function () {
-        
+         var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.getRoute("BranchEdit").attachPatternMatched(this._onRouteMatched, this);
+      },
+      _onRouteMatched: function (oEvent) {
+        var sId = oEvent.getParameter("arguments").id;
+        var oModel = new JSONModel();
+        fetch("http://localhost:8090/api/branches/" + encodeURIComponent(sId))
+          .then (response => {
+            if(!response.ok) throw new Error ("Wystąpił błąd");
+            return response.json();
+          }) 
+          .then(data => {
+            
+            oModel.setData({branch: data})
+          })
+          .catch(error => {
+            console.error("Błąd:", error)
+          });
+
+          this.getView().setModel(oModel);
+
       },
   
       onNavPress: function () {
@@ -116,6 +136,8 @@ sap.ui.define([
                 type: ButtonType.Emphasized,
                 text: "Tak",
                 press: function () {
+                    const oModel = this.getView().getModel();
+                    const sId = oModel.getProperty("/branch/id");
                     const branchName = this.byId("BranchEditName").getValue();
                     const branchUlica = this.byId("BranchEditUlica").getValue();
                     const branchHouseNr = this.byId("BranchEditHouseNr").getValue();
@@ -125,17 +147,17 @@ sap.ui.define([
                     const branchRegion = this.byId("BranchEditRegion").getSelectedKey();
                     //insert do bazy - ewentualnie powiadomienie o błędzie
                     const oData = {
-                        branchName: branchName,
+                        name: branchName,
                         branchUlica: branchUlica,
                         branchHouseNr: branchHouseNr,
                         branchLocNr: branchLocNr,
                         branchPostalCode: branchPostalCode,
-                        branchCity: branchCity,
+                        city: branchCity,
                         branchRegion: branchRegion
                     };
                     BusyIndicator.show(0);
                     $.ajax({
-                        url: "http://localhost:8090/api/branches/${id}", //endpoint
+                        url: "http://localhost:8090/api/branches/" + encodeURIComponent(sId), //endpoint
                         type: "PUT",
                         contentType: "application/json",
                         data: JSON.stringify(oData),

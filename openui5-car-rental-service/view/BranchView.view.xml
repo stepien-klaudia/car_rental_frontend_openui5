@@ -51,7 +51,7 @@
                     <form:formElements>
                         <form:FormElement label = "Nazwa punktu" >
                             <form:fields>
-                                <Input id = "BranchViewName" required="true" editable="false"></Input>
+                                <Input value = "{/branch/name}" id = "BranchViewName" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
@@ -63,22 +63,22 @@
                     <form:formElements>
                         <form:FormElement label = "Ulica">
                             <form:fields>
-                                <Input id = "BranchViewUlica" required="true" editable="false"></Input>
+                                <Input value = "{/branch/branchUlica }" id = "BranchViewUlica" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Numer domu">
                             <form:fields>
-                                <Input id = "BranchViewHouseNr" required="true" editable="false"></Input>
+                                <Input value="{/branch/branchHouseNr}" id = "BranchViewHouseNr" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Numer lokalu">
                             <form:fields>
-                                <Input id = "BranchViewLocNr" required="false" editable="false"></Input>
+                                <Input value="{/branch/branchLocNr}" id = "BranchViewLocNr" required="false" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Kod pocztowy">
                             <form:fields>
-                                <MaskInput mask = "DD-DDD" id = "BranchViewPostalCode" required="true" editable="false">
+                                <MaskInput value="{/branch/branchPostalCode}" mask = "DD-DDD" id = "BranchViewPostalCode" required="true" editable="false">
                                     <rules>
                                         <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
                                     </rules>
@@ -87,12 +87,12 @@
                         </form:FormElement>
                         <form:FormElement label = "Miasto">
                             <form:fields>
-                                <Input id = "BranchViewCity" required="true" editable="false"></Input>
+                                <Input value="{/branch/city}" id = "BranchViewCity" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Województwo">
                             <form:fields>
-                                <Select id = "BranchViewRegion" editable="false">
+                                <Select selectedKey="{/branch/branchRegion}" id = "BranchViewRegion" editable="false">
                                     <core:Item key="DS" text="Dolnośląskie" />
                                     <core:Item key="KP" text="Kujawsko-pomorskie" />
                                     <core:Item key="LU" text="Lubelskie" />
