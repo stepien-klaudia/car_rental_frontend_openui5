@@ -81,7 +81,7 @@
                         ariaLabel="EditClient"
                         press="onTilePress">
                         <TileContent>
-                            <ImageContent src="sap-icon://employee-pane"></ImageContent>
+                           <NumericContent value="{/kpi/active}" icon="sap-icon://employee-rejections" valueColor="Good"></NumericContent>
                         </TileContent>
                     </GenericTile>
 
@@ -92,7 +92,7 @@
                         ariaLabel="BlackList"
                         press="onTilePress">
                         <TileContent>
-                            <NumericContent value="10" icon="sap-icon://employee-rejections"></NumericContent>
+                            <NumericContent value="{/kpi/blacklisted}" icon="sap-icon://employee-rejections" valueColor="Error"></NumericContent>
                         </TileContent>
                     </GenericTile>
                 </FlexBox>

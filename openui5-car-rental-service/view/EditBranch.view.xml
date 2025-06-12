@@ -61,7 +61,7 @@
                 <Button text = "Filtruj" type = "Emphasized" icon="sap-icon://filter" press = "onFilterPress"></Button>  
                 <Button text = "Wyczyść filtry" type="Emphasized" icon="sap-icon://clear-filter" press="onClearPress"></Button> 
                 </OverflowToolbar>
-                <Table id = "BranchesTable" inset="false">
+                <Table id = "BranchesTable" inset="false" items = "{/branches}">
                     <columns>
                         <Column>
                             <Text text="Nazwa punktu"></Text>
@@ -77,8 +77,8 @@
                     <items>
                         <ColumnListItem >
                             <cells>
-                                <Text text = "{branchName}"></Text>
-                                <Text text="{branchCity}"></Text>
+                                <Text text = "{name}"></Text>
+                                <Text text="{city}"></Text>
                                 <Text text="{branchRegion}"></Text>
                                 <HBox justifyContent="End">
                                 <items>

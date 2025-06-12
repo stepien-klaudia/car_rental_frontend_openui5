@@ -22,7 +22,23 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.BlackList", {
   
       onInit: function () {
-        // pobranie danych z bazy vechicles
+        var oModel = new JSONModel();
+        fetch("http://localhost:8090/api/clients")
+          .then (response => {
+            if(!response.ok) throw new Error ("Wystąpił błąd");
+            return response.json();
+          }) 
+          .then(data => {
+            var filteredClients = data.filter(client => client.blackList === true);
+            oModel.setData({blacklist: filteredClients})
+            
+          })
+          .catch(error => {
+            console.error("Błąd:", error)
+          });
+
+          this.getView().setModel(oModel);
+
       },
 
       onNavPress: function () {
@@ -66,25 +82,38 @@ sap.ui.define([
     },
 
     onClearPress: function (){
-      this.byId("BlackListLastNameSearch").setValue("");
-      this.byId("BlackListIdNrSearch").setValue("");
+      this.byId("BlackListLastNameSearch").setValue(null);
+      this.byId("BlackListIdNrSearch").setValue(null);
 
-    // dodać tutaj funkcję do filtrowania
+      this.onFilterPress();
     },
 
     onFilterPress: function (){
-      // dodać filtrowanie
+      const lastName = this.byId("BlackListLastNameSearch").getValue();
+      const idNr = this.byId("BlackListIdNrSearch").getValue();
+
+      var aFilters = []
+
+      if(lastName){
+        aFilters.push(new sap.ui.model.Filter("lastName", sap.ui.model.FilterOperator.Contains, lastName))
+      }
+      if(idNr){
+        aFilters.push(new sap.ui.model.Filter("idNumer", sap.ui.model.FilterOperator.Contains, idNr))
+      }
+      var oTable = this.byId("BlackListTable");
+      var oBinding = oTable.getBinding("items");
+
+      oBinding.filter([aFilters], "Application")
+
     },
 
-    onViewPress: function (){
-      // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
-      const id = 1;
+    onViewPress: function (oEvent){
+      const id = oEvent.getSource().getBindingContext().getObject().id;
       this.getOwnerComponent().getRouter().navTo("ClientView", { id });
     },
 
-    onBlockPress: function (){
-      // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
-      const id = 1;
+    onBlockPress: function (oEvent){
+      const id = oEvent.getSource().getBindingContext().getObject().id;
       this.oBlockApproveMessage = new Dialog({
         type: DialogType.Message,
         title: "Potwierdzenie",
@@ -95,7 +124,7 @@ sap.ui.define([
           press: function () {
             BusyIndicator.show(0);
             $.ajax({
-              url: "http://localhost:8090/api/clients/${id}/blackList",
+              url: "http://localhost:8090/api/clients/" + encodeURIComponent(id) +"/blackList",
               type: "PATCH",
               success: function () {
                   // sap.m.MessageToast.show("Dane zapisane do bazy!");

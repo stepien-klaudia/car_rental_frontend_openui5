@@ -22,19 +22,7 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.BranchEdit", {
   
       onInit: function () {
-        // var oBrandsModel = new JSONModel([
-        //     { "BrandId": "AUDI", "BrandName": "Audi" },
-        //     { "BrandId": "BMW", "BrandName": "BMW" },
-        //     { "BrandId": "FORD", "BrandName": "Ford" },
-        //     { "BrandId": "HONDA", "BrandName": "Honda" },
-        //     { "BrandId": "MERC", "BrandName": "Mercedes-Benz" },
-        //     { "BrandId": "TOYOTA", "BrandName": "Toyota" },
-        //     { "BrandId": "VOLVO", "BrandName": "Volvo" }
-        // ]);
-        // this.getView().setModel(oBrandsModel, "marka");
-
-            // Inicjalizacja ValueHelpDialog, ale bez otwierania go od razu
-        this._oValueHelpDialog = null;
+        
       },
   
       onNavPress: function () {

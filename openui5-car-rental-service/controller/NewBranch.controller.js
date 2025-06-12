@@ -22,18 +22,6 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.NewBranch", {
   
       onInit: function () {
-        // var oBrandsModel = new JSONModel([
-        //     { "BrandId": "AUDI", "BrandName": "Audi" },
-        //     { "BrandId": "BMW", "BrandName": "BMW" },
-        //     { "BrandId": "FORD", "BrandName": "Ford" },
-        //     { "BrandId": "HONDA", "BrandName": "Honda" },
-        //     { "BrandId": "MERC", "BrandName": "Mercedes-Benz" },
-        //     { "BrandId": "TOYOTA", "BrandName": "Toyota" },
-        //     { "BrandId": "VOLVO", "BrandName": "Volvo" }
-        // ]);
-        // this.getView().setModel(oBrandsModel, "marka");
-
-            // Inicjalizacja ValueHelpDialog, ale bez otwierania go od razu
         this._oValueHelpDialog = null;
       },
   
@@ -137,12 +125,12 @@ sap.ui.define([
                     const branchRegion = this.byId("NewBranchRegion").getSelectedKey();
                     //insert do bazy - ewentualnie powiadomienie o błędzie
                     const oData = {
-                        branchName: branchName,
+                        name: branchName,
                         branchUlica: branchUlica,
                         branchHouseNr: branchHouseNr,
                         branchLocNr: branchLocNr,
                         branchPostalCode: branchPostalCode,
-                        branchCity: branchCity,
+                        city: branchCity,
                         branchRegion: branchRegion
                     };
                     BusyIndicator.show(0);

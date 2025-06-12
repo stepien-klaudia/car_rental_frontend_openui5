@@ -22,7 +22,22 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.EditBranch", {
   
       onInit: function () {
-        // pobranie danych z bazy vechicles
+        var oModel = new JSONModel();
+        fetch("http://localhost:8090/api/branches")
+          .then (response => {
+            if(!response.ok) throw new Error ("Wystąpił błąd");
+            return response.json();
+          }) 
+          .then(data => {
+            
+            oModel.setData({branches: data})
+          })
+          .catch(error => {
+            console.error("Błąd:", error)
+          });
+
+          this.getView().setModel(oModel);
+
       },
 
       onNavPress: function () {
@@ -66,32 +81,47 @@ sap.ui.define([
     },
 
     onClearPress: function (){
-      this.byId("EditBranchNameSearch").setValue("");
-      this.byId("EditBranchCitySearch").setValue("");
-      this.byId("EditBranchRegionSearch").setValue("");
+      this.byId("EditBranchNameSearch").setValue(null);
+      this.byId("EditBranchCitySearch").setValue(null);
+      this.byId("EditBranchRegionSearch").setValue(null);
 
-    // dodać tutaj funkcję do filtrowania
+      this.onFilterPress()
     },
 
     onFilterPress: function (){
-      // dodać filtrowanie
+      var aFilters = []
+      const name = this.byId("EditBranchNameSearch").getValue();
+      const city = this.byId("EditBranchCitySearch").getValue();
+      const region = this.byId("EditBranchRegionSearch").getSelectedKey();
+
+      if(name){
+        aFilters.push(new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains, name))
+      }
+      if(city){
+        aFilters.push(new sap.ui.model.Filter("city", sap.ui.model.FilterOperator.Contains, city))
+      }
+      if(region){
+        aFilters.push(new sap.ui.model.Filter("region", sap.ui.model.FilterOperator.EQ, region))
+      }
+      
+      var oTable = this.byId("BranchesTable");
+      var oBinding = oTable.getBinding("items");
+
+      oBinding.filter([aFilters], "Application")
     },
 
-    onViewPress: function (){
-      // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
-      const id = 1;
+    onViewPress: function (oEvent){
+      const id = oEvent.getSource().getBindingContext().getObject().id;
       this.getOwnerComponent().getRouter().navTo("BranchView", { id });
     },
 
-    onEditPress: function (){
-      // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
-      const id = 1;
+    onEditPress: function (oEvent){
+      const id = oEvent.getSource().getBindingContext().getObject().id;
       this.getOwnerComponent().getRouter().navTo("BranchEdit", { id });
     },
 
-    onDeletePress: function (){
-      // const id = oEvent.getSource().getBindingContext().getObject().id; - po podpięciu bazy
-      const id = 1;
+    onDeletePress: function (oEvent){
+      const id = oEvent.getSource().getBindingContext().getObject().id;
       this.oDeleteApproveMessage = new Dialog({
         type: DialogType.Message,
         title: "Potwierdzenie",
@@ -102,7 +132,7 @@ sap.ui.define([
           press: function () {
             BusyIndicator.show(0);
             $.ajax({
-              url: "http://localhost:8090/api/branches/${id}",
+              url: "http://localhost:8090/api/branches/"+ encodeURIComponent(id),
               type: "DELETE",
               success: function () {
                   // sap.m.MessageToast.show("Dane zapisane do bazy!");

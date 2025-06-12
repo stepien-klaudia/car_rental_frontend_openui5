@@ -7,8 +7,13 @@ sap.ui.define([
 
     return Controller.extend("openui5-car-rental-service.controller.Main", {
         onInit: function () {
-            // Komunikat powitalny, możesz usunąć jeśli niepotrzebny
-            MessageToast.show("Strona główna załadowana!");
+            var oKpiModel = new sap.ui.model.json.JSONModel();
+            fetch("http://localhost:8090/api/clients/kpi")
+            .then((res) => res.json())
+            .then((data) => {
+            oKpiModel.setData({kpi:data});
+            }); 
+            this.getView().setModel(oKpiModel);
         },
 
         // Funkcja wywoływana po kliknięciu dowolnego kafelka
