@@ -86,15 +86,15 @@
                         <form:FormElement label = "Rola">
                             <form:fields>
                                 <Select id = "NewEmployeeRole">
-                                    <core:Item key = "EMPLOYEE" text = "Pracownik"></core:Item>
+                                    <core:Item key = "SELLER" text = "Pracownik"></core:Item>
                                     <core:Item key = "MANAGER" text="Kierownik punktu"></core:Item>
                                 </Select>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Punkt">
                             <form:fields>
-                                <Select id = "NewEmployeeBranch">
-                                
+                                <Select id = "NewEmployeeBranch" items = "{/branches}">
+                                    <core:Item key = "{id}" text = "{name}"></core:Item>
                                 </Select>
                             </form:fields>
                         </form:FormElement>

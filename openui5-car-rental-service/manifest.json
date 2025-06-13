@@ -120,6 +120,11 @@
                 "pattern":"new_employee",
                 "name": "NewEmployee",
                 "target": "NewEmployee"
+            },
+            {
+                "pattern":"edit_employees",
+                "name":"EditEmployee",
+                "target":"EditEmployee"
             }
         ],
         "targets":
@@ -195,6 +200,10 @@
             "NewEmployee":
             {
                 "viewName": "NewEmployee"
+            },
+            "EditEmployee":
+            {
+                "viewName": "EditEmployee"
             }
         }
         }

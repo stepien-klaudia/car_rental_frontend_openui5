@@ -111,6 +111,7 @@
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Zarządzanie kontami pracowników"
                         subheader="Zarządzaj dostępami pracowników"
+                        ariaLabel="EditEmployee"
                         press="onTilePress">
                         <TileContent>
                             <ImageContent src="sap-icon://employee-lookup"></ImageContent>

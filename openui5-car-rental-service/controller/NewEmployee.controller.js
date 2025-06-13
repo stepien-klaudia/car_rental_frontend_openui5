@@ -22,19 +22,21 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.NewEmployee", {
   
       onInit: function () {
-        // var oBrandsModel = new JSONModel([
-        //     { "BrandId": "AUDI", "BrandName": "Audi" },
-        //     { "BrandId": "BMW", "BrandName": "BMW" },
-        //     { "BrandId": "FORD", "BrandName": "Ford" },
-        //     { "BrandId": "HONDA", "BrandName": "Honda" },
-        //     { "BrandId": "MERC", "BrandName": "Mercedes-Benz" },
-        //     { "BrandId": "TOYOTA", "BrandName": "Toyota" },
-        //     { "BrandId": "VOLVO", "BrandName": "Volvo" }
-        // ]);
-        // this.getView().setModel(oBrandsModel, "marka");
+       var oModel = new JSONModel();
+        fetch("http://localhost:8090/api/branches")
+          .then (response => {
+            if(!response.ok) throw new Error ("Wystąpił błąd");
+            return response.json();
+          }) 
+          .then(data => {
+            
+            oModel.setData({branches: data})
+          })
+          .catch(error => {
+            console.error("Błąd:", error)
+          });
 
-            // Inicjalizacja ValueHelpDialog, ale bez otwierania go od razu
-        this._oValueHelpDialog = null;
+          this.getView().setModel(oModel);
       },
   
       onNavPress: function () {
@@ -128,12 +130,6 @@ sap.ui.define([
                 type: ButtonType.Emphasized,
                 text: "Tak",
                 press: function () {
-                    // const firstName = this.byId("NewClientFirstName").getValue();
-                    // const lastName = this.byId("NewClientLastName").getValue();
-                    // const birthDate = this.byId("NewClientBirthDate").getValue();
-                    // const idNumber = this.byId("NewClientIDNumber").getValue();
-                    // const email = this.byId("NewClientEmail").getValue();
-                    // const phone = this.byId("NewClientTelNr").getValue();
                     const firstName = this.byId("NewEmployeeFirstName").getValue();
                     const lastName = this.byId("NewEmployeeLastName").getValue(); 
                     const email = this.byId("NewEmployeeEmail").getValue();
@@ -142,16 +138,15 @@ sap.ui.define([
                     const branchId = this.byId("NewEmployeeBranch").getSelectedKey();
                     //insert do bazy - ewentualnie powiadomienie o błędzie
                     const oData = {
-                        // firstName: firstName,
-                        // lastName: lastName,
-                        // birthDate: birthDate,
-                        // idNumber: idNumber,
-                        // email: email,
-                        // phone: phone
+                        firstName:firstName,
+                        lastName:lastName,
+                        email:email,
+                        password:password,
+                        role:role
                     };
                     BusyIndicator.show(0);
                     $.ajax({
-                        url: "http://localhost:8090/api/branches/${branchId}/employees", //endpoint
+                        url: "http://localhost:8090/api/branches/" + encodeURIComponent(branchId) +"/employees", //endpoint
                         type: "POST",
                         contentType: "application/json",
                         data: JSON.stringify(oData),

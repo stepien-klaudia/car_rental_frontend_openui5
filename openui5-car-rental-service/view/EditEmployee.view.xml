@@ -1,0 +1,89 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.EditEmployee"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+<App>
+    <Page id="page_edit_employee" showNavButton="true" navButtonPress="onNavPress">
+        <f:ShellBar 
+            title="Edycja danych pracowników"
+            secondTitle="Zarządzanie kontami pracowników"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+                <Title text="Lista wszystkich pracowników" level="H3"></Title>
+                <MessageStrip 
+                text="Wybierz pracownika i naciśnij akcję po prawej stronie."
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+                ></MessageStrip>
+                <OverflowToolbar height="4.5rem">
+                <VBox >
+                    <Label text="Nazwisko" labelFor="EditEmployeeLastNameSearch" />
+                    <SearchField id="EditEmployeeLastNameSearch" width="12rem" placeholder="Nazwisko">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </SearchField>
+                </VBox>
+                <VBox >
+                    <Label text="Rola:" labelFor="EditEmployeeRoleSearch" />
+                    <SearchField id="EditEmployeeRoleSearch" width="12rem" placeholder="Rola">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </SearchField>
+                </VBox>   
+                <VBox >
+                    <Label text="Punkt wypożyczalni:" labelFor="EditEmployeeBranchSearch" />
+                    <SearchField id="EditEmployeeBranchSearch" width="12rem" placeholder="Punkt wypożyczalni">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </SearchField>
+                </VBox>   
+                <ToolbarSpacer ></ToolbarSpacer>
+                <Button text = "Filtruj" type = "Emphasized" icon="sap-icon://filter" press = "onFilterPress"></Button>  
+                <Button text = "Wyczyść filtry" type="Emphasized" icon="sap-icon://clear-filter" press="onClearPress"></Button> 
+                </OverflowToolbar>
+                <Table id = "EmployeeTable" inset="false" items="{/employees}">
+                    <columns>
+                        <Column width="12rem">
+                            <Text text="Imię"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Nazwisko"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Email"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Punkt wypożyczalni"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Rola"></Text>
+                        </Column>
+                        <Column ></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem >
+                            <cells>
+                                <Text text = "{firstName}"></Text>
+                                <Text text="{lastName}"></Text>
+                                <Text text="{email}"></Text>
+                                <Text text="{branch}"></Text>
+                                <Text text="{role}"></Text>
+                                <HBox justifyContent="End">
+                                <items>
+                                    <Button icon = "sap-icon://detail-view" press = ".onViewPress" text="Wyświetl" class="sapUiSmallMarginBegin"></Button>
+                                    <Button icon = "sap-icon://edit" press=".onEditPress" text="Edytuj" class="sapUiSmallMarginBegin"></Button>
+                                    <Button icon = "sap-icon://busy" press = ".onDeletePress" text="Usuń" class="sapUiSmallMarginBegin"></Button>
+                                </items>
+                                </HBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>                   
+    </VBox>
+    </Page>
+</App>
+
+</mvc:View>
