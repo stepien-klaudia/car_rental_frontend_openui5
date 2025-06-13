@@ -10,13 +10,16 @@ sap.ui.define([
             var oKpiModel = new sap.ui.model.json.JSONModel();
             Promise.all([
                 fetch("http://localhost:8090/api/clients/kpi").then((res) => res.json()),
-                fetch("http://localhost:8090/api/branches/kpi").then((res) => res.json())]
+                fetch("http://localhost:8090/api/branches/kpi").then((res) => res.json()),
+                fetch("http://localhost:8090/api/vehicles/kpi").then((res) => res.json())
+            ]
             )
-            .then(([clientsKPI, branchesKPI]) => {
+            .then(([clientsKPI, branchesKPI, vehiclesKPI]) => {
             oKpiModel.setData(
                 {
                     clientsKPI: clientsKPI,
-                    branchesKPI: branchesKPI
+                    branchesKPI: branchesKPI,
+                    vehiclesKPI: vehiclesKPI
                 }
             );
             }); 

@@ -60,7 +60,7 @@
                     <items>
                         <ColumnListItem >
                             <cells>
-                                <Text text = "{IdNumber}"></Text>
+                                <Text text = "{dowod}"></Text>
                                 <Text text="{firstName}"></Text>
                                 <Text text="{lastName}"></Text>
                                 <Text text="{birthDate}"></Text>

@@ -52,7 +52,7 @@
                         <form:FormElement label="Numer rejestracyjny">
                             <form:fields>
                             <!-- <Text text="{/vehicle/nr_rejestracyjny}"></Text> -->
-                                <Input id="VehicleViewRejNr" required="true" editable="false" value = "{/vehicle/nr_rejestracyjny}"></Input>
+                                <Input id="VehicleViewRejNr" required="true" editable="false" value = "{/vehicle/vin}"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label="Rok produkcji">
@@ -73,12 +73,12 @@
                         </form:FormElement>
                         <form:FormElement label="Data końca ważności przeglądu">
                             <form:fields>
-                                <DatePicker value = "{/vehicle/data_przeglad}" editable="false" id="VehicleViewPrzeglDat" class="sapUiSmallMarginBottom" required="true"></DatePicker>
+                                <DatePicker value = "{/vehicle/dataPrzeglad}" editable="false" id="VehicleViewPrzeglDat" class="sapUiSmallMarginBottom" required="true"></DatePicker>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label="Data końca ważności ubezpieczenia">
                             <form:fields>
-                                <DatePicker value = "{/vehicle/data_ubezpieczenie}" editable="false" id="VehicleViewUbezpDat" class="sapUiSmallMarginBottom" required="true"></DatePicker>
+                                <DatePicker value = "{/vehicle/dataUbezp}" editable="false" id="VehicleViewUbezpDat" class="sapUiSmallMarginBottom" required="true"></DatePicker>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
@@ -116,7 +116,7 @@
                         </form:FormElement>
                         <form:FormElement label="Liczba drzwi">
                             <form:fields>
-                                <MaskInput mask="D" id="VehicleViewDoor" required="true" editable="false">
+                                <MaskInput mask="D" id="VehicleViewDoor" required="true" editable="false" value="{/vehicle/door}">
                                     <rules>
                                         <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
                                     </rules>
@@ -125,7 +125,7 @@
                         </form:FormElement>
                         <form:FormElement label="Przeznaczenie">
                             <form:fields>
-                                <Select id = "VehicleViewPrzeznaczenie" editable="false">
+                                <Select id = "VehicleViewPrzeznaczenie" editable="false" selectedKey="{/vehicle/przeznaczenie}">
                                     <!-- <core:Item key="{przeznaczenie_key}" text="{przeznaczenie_text}"></core:Item> -->
                                     <core:Item key="osobowy" text="Samochód osobowy" />
                                     <core:Item key="dostawczy" text="Samochód dostawczy" />
@@ -139,7 +139,7 @@
                     </form:formElements>
                     <form:FormElement label="Napęd">
                         <form:fields>
-                            <Select id = "VehicleViewNaped" editable="false">
+                            <Select id = "VehicleViewNaped" editable="false" selectedKey="{/vehicle/naped}">
                                 <!-- <core:Item key="{naped_key}" text="{naped_text}"></core:Item> -->
                                 <core:Item key="benzyna" text="Benzyna" />
                                 <core:Item key="diesel" text="Diesel" />
@@ -158,7 +158,7 @@
                     <form:formElements>
                         <form:FormElement label="Typ">
                             <form:fields>
-                                <Select id = "VehicleViewType" editable="false">
+                                <Select id = "VehicleViewType" editable="false" selectedKey="{/vehicle/typ}">
                                     <!-- <core:Item key="{typ_key}" text="{typ_text}"></core:Item> -->
                                     <core:Item key="ekonomiczny" text="Ekonomiczny" />
                                     <core:Item key="standard" text="Standard" />
@@ -167,14 +167,9 @@
                                 </Select>
                             </form:fields>
                         </form:FormElement>
-                        <form:FormElement label="Wiek pojazdu" >
-                            <form:fields>
-                                <Input id="VehicleViewAge" editable="false"></Input>
-                            </form:fields>
-                        </form:FormElement>
                         <form:FormElement label="Bezwypadkowy">
                             <form:fields>
-                                <CheckBox id="VehicleViewBezwypadkowy" editable="false"></CheckBox>
+                                <CheckBox id="VehicleViewBezwypadkowy" editable="false" selected="{/vehicle/noAccident}"></CheckBox>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>

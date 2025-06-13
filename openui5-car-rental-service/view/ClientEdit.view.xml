@@ -66,7 +66,7 @@
                         </form:FormElement>
                         <form:FormElement label= "Numer dowodu osobistego">
                             <form:fields>
-                                <Input value = "{/client/idNumber}" id = "ClientEditIDNumber" required="true"></Input>
+                                <Input value = "{/client/dowod}" id = "ClientEditIDNumber" required="true"></Input>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>

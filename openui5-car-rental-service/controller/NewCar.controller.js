@@ -7,8 +7,9 @@ sap.ui.define([
 	"sap/m/library",
 	"sap/m/Text",
     "sap/m/MessageBox",
-    "sap/ui/core/BusyIndicator"
-  ], function (Controller, JSONModel, coreLibrary, Dialog, Button, mobileLibrary, Text, MessageBox, BusyIndicator) {
+    "sap/ui/core/BusyIndicator",
+    "sap/ui/model/odata/v4/ODataUtils"
+  ], function (Controller, JSONModel, coreLibrary, Dialog, Button, mobileLibrary, Text, MessageBox, BusyIndicator, ODataUtils) {
     "use strict";
     // shortcut for sap.m.ButtonType
 	var ButtonType = mobileLibrary.ButtonType;
@@ -131,8 +132,9 @@ sap.ui.define([
                     const nr_rejestracyjny = this.byId("nr_rejestracyjny").getValue();
                     const rok_produkcji = this.byId("rok_produkcji").getValue();
                     const przebieg = this.byId("przebieg").getValue();
-                    const data_przeglad = this.byId("data_przeglad").getValue();
-                    const data_ubezpieczenie = this.byId("data_ubezpieczenie").getValue();
+                    const data_przeglad = this.byId("data_przeglad").getDateValue();
+                    ODataUtils.formatLiteral(data_przeglad, "Edm.Date");
+                    const data_ubezpieczenie = this.byId("data_ubezpieczenie").getDateValue();
                     const marka = this.byId("marka").getSelectedKey();
                     const model = this.byId("model").getValue();
                     const liczba_drzwi = this.byId("liczba_drzwi").getValue();
@@ -140,22 +142,20 @@ sap.ui.define([
                     const naped = this.byId("naped").getSelectedKey();
                     const typ = this.byId("typ").getSelectedKey();
                     const bezwypadkowy = this.byId("bezwypadkowy").getSelected();
-                    const wiek_auta = this.byId("wiek_auta").getValue();
                     //insert do bazy - ewentualnie powiadomienie o błędzie
                     const oData = {
-                        nr_rejestracyjny: nr_rejestracyjny,
+                        vin: nr_rejestracyjny,
                         year: rok_produkcji,
                         przebieg: przebieg,
-                        data_przeglad: data_przeglad,
-                        data_ubezpieczenie: data_ubezpieczenie,
+                        dataPrzeglad: data_przeglad,
+                        dataUbezp: data_ubezpieczenie,
                         brand: marka,
                         model: model,
-                        liczba_drzwi: liczba_drzwi,
+                        door: liczba_drzwi,
                         przeznaczenie: przeznaczenie,
                         naped: naped,
-                        type: typ,
-                        wiek_auta: wiek_auta,
-                        bezwypadkowy: bezwypadkowy
+                        typ: typ,
+                        noAccident: bezwypadkowy
                     };
                     BusyIndicator.show(0);
                     $.ajax({

@@ -25,6 +25,7 @@ sap.ui.define([
       onInit: function () {
         
         var oModel = new JSONModel();
+        BusyIndicator.show(0);
         fetch("http://localhost:8090/api/vehicles")
           .then (response => {
             if(!response.ok) throw new Error ("Wystąpił błąd");
@@ -46,7 +47,8 @@ sap.ui.define([
           })
           .catch(error => {
             console.error("Błąd:", error)
-          });
+          })
+          .finally(BusyIndicator.hide());
 
           this.getView().setModel(oModel);
 

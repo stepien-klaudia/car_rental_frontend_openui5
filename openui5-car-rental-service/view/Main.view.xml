@@ -36,7 +36,7 @@
                         press="onTilePress"
                         ariaLabel="UpcomingInspections">
                         <TileContent unit="Samochody wymagające przeglądu">
-                            <NumericContent value="1" icon="sap-icon://insurance-car"></NumericContent>
+                            <NumericContent value="{/vehiclesKPI/total}" icon="sap-icon://insurance-car" valueColor="Error"></NumericContent>
                         </TileContent>  
                     </GenericTile>
 

@@ -16,12 +16,12 @@
         
         <IconTabBar select=".onFilterSelect" class="sapUiResponsiveContentPadding">
         <items>
-            <IconTabFilter showAll="true" text = "Wszystkie samochody" count = "100" key="All"/>
-            <IconTabFilter icon="sap-icon://warning" iconColor="Critical" count = "90" text="Przegląd w tym miesiącu" key="Warning"/>
-            <IconTabFilter icon= "sap-icon://high-priority" iconColor="Negative" count = "10" text = "Przeglądy straciły ważność" key = "Critical"/>
+            <IconTabFilter showAll="true" text = "Wszystkie samochody" count = "{/kpi/total}" key="All"/>
+            <IconTabFilter icon="sap-icon://warning" iconColor="Critical" count = "{/kpi/currentMonth}" text="Przegląd w tym miesiącu" key="Warning"/>
+            <IconTabFilter icon= "sap-icon://high-priority" iconColor="Negative" count = "{/kpi/expired}" text = "Przeglądy straciły ważność" key = "Critical"/>
         </items>
         <content>
-            <Table id="UpcomingInspectionsTable" inset="false" headerText="Samochody do sprawdzenia">
+            <Table id="UpcomingInspectionsTable" inset="false" headerText="Samochody do sprawdzenia" items = "{/vehicles}">
                 <columns>
                     <Column >
                         <Text text="Numer rejestracyjny"></Text>
@@ -36,6 +36,16 @@
                         <Text text="Data końca ważności ubezpieczenia"></Text>
                     </Column>
                 </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text = "{vin}"></Text>
+                            <Text text = "{status}"></Text>
+                            <Text text = "{dataPrzeglad}"></Text>
+                            <Text text = "{dataUbezp}"></Text>
+                        </cells>
+                    </ColumnListItem>
+                </items>
             </Table>
         </content>
         </IconTabBar>

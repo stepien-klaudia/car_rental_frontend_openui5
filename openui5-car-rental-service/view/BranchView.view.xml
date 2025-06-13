@@ -63,22 +63,22 @@
                     <form:formElements>
                         <form:FormElement label = "Ulica">
                             <form:fields>
-                                <Input value = "{/branch/branchUlica }" id = "BranchViewUlica" required="true" editable="false"></Input>
+                                <Input value = "{/branch/street}" id = "BranchViewUlica" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Numer domu">
                             <form:fields>
-                                <Input value="{/branch/branchHouseNr}" id = "BranchViewHouseNr" required="true" editable="false"></Input>
+                                <Input value="{/branch/houseNo}" id = "BranchViewHouseNr" required="true" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Numer lokalu">
                             <form:fields>
-                                <Input value="{/branch/branchLocNr}" id = "BranchViewLocNr" required="false" editable="false"></Input>
+                                <Input value="{/branch/locNo}" id = "BranchViewLocNr" required="false" editable="false"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Kod pocztowy">
                             <form:fields>
-                                <MaskInput value="{/branch/branchPostalCode}" mask = "DD-DDD" id = "BranchViewPostalCode" required="true" editable="false">
+                                <MaskInput value="{/branch/postalCode}" mask = "DD-DDD" id = "BranchViewPostalCode" required="true" editable="false">
                                     <rules>
                                         <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
                                     </rules>
@@ -92,7 +92,7 @@
                         </form:FormElement>
                         <form:FormElement label = "Województwo">
                             <form:fields>
-                                <Select selectedKey="{/branch/branchRegion}" id = "BranchViewRegion" editable="false">
+                                <Select selectedKey="{/branch/region}" id = "BranchViewRegion" editable="false">
                                     <core:Item key="DS" text="Dolnośląskie" />
                                     <core:Item key="KP" text="Kujawsko-pomorskie" />
                                     <core:Item key="LU" text="Lubelskie" />

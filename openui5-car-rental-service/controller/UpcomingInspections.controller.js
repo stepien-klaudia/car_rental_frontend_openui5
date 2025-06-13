@@ -22,19 +22,25 @@ sap.ui.define([
     return Controller.extend("openui5-car-rental-service.controller.UpcomingInspections", {
   
       onInit: function () {
-        // var oBrandsModel = new JSONModel([
-        //     { "BrandId": "AUDI", "BrandName": "Audi" },
-        //     { "BrandId": "BMW", "BrandName": "BMW" },
-        //     { "BrandId": "FORD", "BrandName": "Ford" },
-        //     { "BrandId": "HONDA", "BrandName": "Honda" },
-        //     { "BrandId": "MERC", "BrandName": "Mercedes-Benz" },
-        //     { "BrandId": "TOYOTA", "BrandName": "Toyota" },
-        //     { "BrandId": "VOLVO", "BrandName": "Volvo" }
-        // ]);
-        // this.getView().setModel(oBrandsModel, "marka");
-
-            // Inicjalizacja ValueHelpDialog, ale bez otwierania go od razu
-        this._oValueHelpDialog = null;
+        var oModel = new sap.ui.model.json.JSONModel();
+            Promise.all([
+                fetch("http://localhost:8090/api/vehicles/inspectionsAll").then((res) => res.json()),
+                // fetch("http://localhost:8090/api/vehicles/inspectionsExpired").then((res) => res.json()),
+                // fetch("http://localhost:8090/api/vehicles/inspectionsCurrentMonth").then((res) => res.json()),
+                fetch("http://localhost:8090/api/vehicles/kpi").then((res) => res.json())
+            ]
+            )
+            .then(([inspectionsAll, kpi]) => {
+            oModel.setData(
+                {
+                    vehicles: inspectionsAll,
+                    // inspectionsExpired: inspectionsExpired,
+                    // inspectionsCurrentMonth: inspectionsCurrentMonth,
+                    kpi: kpi
+                }
+            );
+            }); 
+            this.getView().setModel(oModel);
       },
   
       onNavPress: function () {
@@ -75,7 +81,52 @@ sap.ui.define([
     });
     }
     this._oProfileMenu.openBy(oButton);
+    },
+
+   onFilterSelect: function(oEvent) {
+    const sKey = oEvent.getParameter("key");
+    switch (sKey) {
+        case "All":
+            this._loadAllVehicles();
+            break;
+        case "Warning":
+            this._loadVehiclesWithCurrentMonthInspection();
+            break;
+        case "Critical":
+            this._loadVehiclesWithExpiredInspection();
+            break;
     }
+
+},
+
+_loadAllVehicles: function() {
+    const oModel = this.getView().getModel();
+    fetch("http://localhost:8090/api/vehicles/inspectionsAll")
+        .then((res) => res.json())
+        .then((data) => {
+            oModel.setProperty("/vehicles", data);
+        });
+},
+
+_loadVehiclesWithCurrentMonthInspection: function() {
+    const oModel = this.getView().getModel();
+    fetch("http://localhost:8090/api/vehicles/inspectionsCurrentMonth")
+        .then((res) => res.json())
+        .then((data) => {
+            oModel.setProperty("/vehicles", data);
+        });
+},
+
+_loadVehiclesWithExpiredInspection: function() {
+    const oModel = this.getView().getModel();
+    fetch("http://localhost:8090/api/vehicles/inspectionsExpired")
+        .then((res) => res.json())
+        .then((data) => {
+            oModel.setProperty("/vehicles", data);
+        });
+}
+
+
   
     });
   });

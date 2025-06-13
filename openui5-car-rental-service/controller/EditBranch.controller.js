@@ -144,7 +144,7 @@ sap.ui.define([
                   }); 
               }.bind(this),
               error: function (){
-                  sap.m.MessageBox.error("Podczas usuwania wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
+                  sap.m.MessageBox.error("Punkt jest powiązany z pracownikami lub pojazdami, nie można go usunąć. Należy najpierw zmienić dane lub usunąć inne obiekty.", {onClose: function(oAction){
                       // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
                       location.reload();
                   }.bind(this)});

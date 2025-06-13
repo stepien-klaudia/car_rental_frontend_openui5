@@ -77,7 +77,7 @@
                     <items>
                         <ColumnListItem >
                             <cells>
-                                <Text text = "{id}"></Text>
+                                <Text text = "{vin}"></Text>
                                 <Text text="{brand}"></Text>
                                 <Text text="{model}"></Text>
                                 <Text text="{typ}"></Text>

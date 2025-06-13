@@ -79,7 +79,7 @@
                             <cells>
                                 <Text text = "{name}"></Text>
                                 <Text text="{city}"></Text>
-                                <Text text="{branchRegion}"></Text>
+                                <Text text="{region}"></Text>
                                 <HBox justifyContent="End">
                                 <items>
                                     <Button icon = "sap-icon://detail-view" press = ".onViewPress" text="Wyświetl" class="sapUiSmallMarginBegin"></Button>

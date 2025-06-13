@@ -148,12 +148,12 @@ sap.ui.define([
                     //insert do bazy - ewentualnie powiadomienie o błędzie
                     const oData = {
                         name: branchName,
-                        branchUlica: branchUlica,
-                        branchHouseNr: branchHouseNr,
-                        branchLocNr: branchLocNr,
-                        branchPostalCode: branchPostalCode,
+                        street: branchUlica,
+                        houseNo: branchHouseNr,
+                        locNo: branchLocNr,
+                        postalCode: branchPostalCode,
                         city: branchCity,
-                        branchRegion: branchRegion
+                        region: branchRegion
                     };
                     BusyIndicator.show(0);
                     $.ajax({

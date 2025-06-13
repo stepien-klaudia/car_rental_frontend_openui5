@@ -147,7 +147,7 @@ sap.ui.define([
                     const oData = {
                         firstName: firstName,
                         lastName: lastName,
-                        idNumber: idNumber,
+                        dowod: idNumber,
                         email: email,
                         phone: phone
                     };

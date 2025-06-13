@@ -140,20 +140,18 @@ sap.ui.define([
                     const sId = oModel.getProperty("/vehicle/id");
                     const nr_rejestracyjny = this.byId("VehicleEditRejNr").getValue();
                     const przebieg = this.byId("VehicleEditPrzebieg").getValue();
-                    const data_przeglad = this.byId("VehicleEditPrzeglDat").getValue();
-                    const data_ubezpieczenie = this.byId("VehicleEditUbezpDat").getValue();
+                    const data_przeglad = this.byId("VehicleEditPrzeglDat").getDateValue();
+                    const data_ubezpieczenie = this.byId("VehicleEditUbezpDat").getDateValue();
                     const typ = this.byId("VehicleEditType").getSelectedKey();
                     const bezwypadkowy = this.byId("VehicleEditBezwypadkowy").getSelected();
-                    const wiek_auta = this.byId("VehicleEditAge").getValue();
                     //insert do bazy - ewentualnie powiadomienie o błędzie
                     const oData = {
-                        nr_rejestracyjny: nr_rejestracyjny,
+                        vin: nr_rejestracyjny,
                         przebieg: przebieg,
-                        data_przeglad: data_przeglad,
-                        data_ubezpieczenie: data_ubezpieczenie,
-                        type: typ,
-                        wiek_auta: wiek_auta,
-                        bezwypadkowy: bezwypadkowy
+                        dataPrzeglad: data_przeglad,
+                        dataUbezp: data_ubezpieczenie,
+                        typ: typ,
+                        noAccident: bezwypadkowy
                     };
                     BusyIndicator.show(0);
                     $.ajax({
@@ -216,25 +214,7 @@ sap.ui.define([
             
         })
         this.oRejectAproveMessage.open();
-    },
-
-     onProductionYearChange: function (oEvent){
-        const sYear = oEvent.getParameter("value");
-        const iYear = parseInt(sYear, 10);
-        const currentYear = new Date().getFullYear();
-
-        const oInput = this.byId("VehicleEditProdYr");
-        const oAge = this.byId("VehicleEditAge");
-
-        if(isNaN(iYear) || iYear > currentYear || iYear < 1900){
-            return;
-        }
-
-        const age = currentYear - iYear;
-
-        oAge.setValue(age);
-
-     }
+    }
   
     });
   });

@@ -118,7 +118,7 @@ sap.ui.define([
                 press: function () {
                     const firstName = this.byId("NewClientFirstName").getValue();
                     const lastName = this.byId("NewClientLastName").getValue();
-                    const birthDate = this.byId("NewClientBirthDate").getValue();
+                    const birthDate = this.byId("NewClientBirthDate").getDateValue();
                     const idNumber = this.byId("NewClientIDNumber").getValue();
                     const email = this.byId("NewClientEmail").getValue();
                     const phone = this.byId("NewClientTelNr").getValue();
@@ -127,7 +127,7 @@ sap.ui.define([
                         firstName: firstName,
                         lastName: lastName,
                         birthDate: birthDate,
-                        idNumber: idNumber,
+                        dowod: idNumber,
                         email: email,
                         phone: phone
                     };
