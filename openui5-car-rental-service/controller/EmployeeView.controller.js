@@ -42,7 +42,8 @@ sap.ui.define([
           }) 
         ])
           .then(([employee, branches]) => {
-            
+
+            employee.branch = branch;
             oModel.setData({employee: employee, branches: branches})
           })
           .catch(error => {

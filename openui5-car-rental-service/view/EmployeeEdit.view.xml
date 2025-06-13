@@ -1,12 +1,12 @@
 <mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
-    controllerName="openui5-car-rental-service.controller.EmployeeView"
+    controllerName="openui5-car-rental-service.controller.EmployeeEdit"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     displayBlock="true">
      <App>
         <Page  showNavButton="true" navButtonPress="onNavPress">
             <f:ShellBar 
-            title="Wyświetlanie danych pracownika"
+            title="Edycja danych pracownika"
             secondTitle="Zarządzanie pracownikami"
             >
                 <f:profile>
@@ -15,7 +15,7 @@
             </f:ShellBar>
             <VBox class="sapUiSmallMargin">
             <MessageStrip 
-                text="Ten widok nie pozwala na edycję danych, cofnij się do listy pracowników aby edytować."
+                text="Zmień dane i kliknij przycisk 'Zapisz' na dole ekranu"
                 showIcon="true"
                 showCloseButton="true"
                 class="sapUiMediumMarginBottom"
@@ -24,7 +24,7 @@
             editable="true"
             >
             <form:title>
-                <core:Title text="Wyświetl dane pracownika"></core:Title>
+                <core:Title text="Edytuj dane pracownika"></core:Title>
             </form:title>
             <form:layout>
                 <form:ResponsiveGridLayout 
@@ -50,12 +50,12 @@
                     <form:formElements>
                         <form:FormElement label = "Imię">
                             <form:fields>
-                                <Input value="{/employee/firstName}" id = "EmployeeViewFirstName" required="true" editable="false"></Input>
+                                <Input value="{/employee/firstName}" id = "EmployeeEditFirstName" required="true" editable="true"></Input>
                             </form:fields>
                         </form:FormElement>
                         <form:FormElement label = "Nazwisko">
                             <form:fields>
-                                <Input value="{/employee/lastName}" id = "EmployeeViewLastName" required="true" editable="false"></Input>
+                                <Input value="{/employee/lastName}" id = "EmployeeEditLastName" required="true" editable="true"></Input>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
@@ -67,7 +67,7 @@
                     <form:formElements>
                         <form:FormElement label = "Adres email">
                             <form:fields>
-                                <Input value="{/employee/email}" id = "EmployeeViewEmail" required="true" editable="false"></Input>
+                                <Input value="{/employee/email}" id = "EmployeeEditEmail" required="true" editable="true"></Input>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
@@ -79,7 +79,7 @@
                     <form:formElements>
                         <form:FormElement label = "Rola">
                             <form:fields>
-                                <Select id = "EmployeeViewRole" editable="false" selectedKey="{/employee/role}">
+                                <Select id = "EmployeeEditRole" editable="true" selectedKey="{/employee/role}">
                                     <core:Item key = "SELLER" text = "Pracownik"></core:Item>
                                     <core:Item key = "MANAGER" text="Kierownik punktu"></core:Item>
                                 </Select>
@@ -87,7 +87,7 @@
                         </form:FormElement>
                         <form:FormElement label = "Punkt">
                             <form:fields>
-                                <Select id = "EmployeeViewBranch" items = "{/branches}" editable="false" selectedKey="{/employee/branch}">
+                                <Select id = "EmployeeEditBranch" items = "{/branches}" editable="true" selectedKey="{/employee/branch}">
                                     <core:Item key = "{id}" text = "{name}"></core:Item>
                                 </Select>
                             </form:fields>
@@ -97,6 +97,17 @@
             </form:formContainers>
             </form:Form>
             </VBox>
+            <footer>
+                <OverflowToolbar id="EmployeeEditFooter">
+                    <ToolbarSpacer ></ToolbarSpacer>
+                    <Button type="Accept" text="Zapisz" id="EditEmployee" press="onAcceptPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                    <Button type="Reject" text="Anuluj" id="RejectEditEmployee" press="onRejectPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                </OverflowToolbar>
+            </footer>
         </Page>
     </App>
 </mvc:View>
