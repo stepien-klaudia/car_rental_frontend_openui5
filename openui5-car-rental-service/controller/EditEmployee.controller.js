@@ -114,12 +114,14 @@ sap.ui.define([
 
     onViewPress: function (oEvent){
       const id = oEvent.getSource().getBindingContext().getObject().id;
-      this.getOwnerComponent().getRouter().navTo("EmployeeView", { id });
+      const branch_id = oEvent.getSource().getBindingContext().getObject().branch_id;
+      this.getOwnerComponent().getRouter().navTo("EmployeeView",{id: id,branch: branch_id});
     },
 
     onEditPress: function (oEvent){
       const id = oEvent.getSource().getBindingContext().getObject().id; 
-      this.getOwnerComponent().getRouter().navTo("EmployeeEdit", { id });
+      const branch_id = oEvent.getSource().getBindingContext().getObject().branch_id;
+      this.getOwnerComponent().getRouter().navTo("EmployeeEdit",{id: id,branch: branch_id});
     },
 
     onDeletePress: function (oEvent){

@@ -125,6 +125,11 @@
                 "pattern":"edit_employees",
                 "name":"EditEmployee",
                 "target":"EditEmployee"
+            },
+            {
+                "pattern":"employee/{id}/{branch}/view",
+                "name":"EmployeeView",
+                "target":"EmployeeView"
             }
         ],
         "targets":
@@ -204,6 +209,10 @@
             "EditEmployee":
             {
                 "viewName": "EditEmployee"
+            },
+            "EmployeeView":
+            {
+                "viewName":"EmployeeView"
             }
         }
         }

@@ -1,0 +1,102 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.EmployeeView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+     <App>
+        <Page  showNavButton="true" navButtonPress="onNavPress">
+            <f:ShellBar 
+            title="Wyświetlanie danych pracownika"
+            secondTitle="Zarządzanie pracownikami"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+            <MessageStrip 
+                text="Ten widok nie pozwala na edycję danych, cofnij się do listy pracowników aby edytować."
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+            ></MessageStrip>
+            <form:Form 
+            editable="true"
+            >
+            <form:title>
+                <core:Title text="Wyświetl dane pracownika"></core:Title>
+            </form:title>
+            <form:layout>
+                <form:ResponsiveGridLayout 
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="3"
+                adjustLabelSpan="true"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="4"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="true"></form:ResponsiveGridLayout>
+            </form:layout>
+            <form:formContainers>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane osobiste"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Imię">
+                            <form:fields>
+                                <Input value="{/employee/firstName}" id = "EmployeeViewFirstName" required="true" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Nazwisko">
+                            <form:fields>
+                                <Input value="{/employee/lastName}" id = "EmployeeViewLastName" required="true" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane systemowe"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Adres email">
+                            <form:fields>
+                                <Input value="{/employee/email}" id = "EmployeeViewEmail" required="true" editable="false"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text="Dane firmowe"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Rola">
+                            <form:fields>
+                                <Select id = "EmployeeViewRole" editable="false" selectedKey="{/employee/role}">
+                                    <core:Item key = "SELLER" text = "Pracownik"></core:Item>
+                                    <core:Item key = "MANAGER" text="Kierownik punktu"></core:Item>
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Punkt">
+                            <form:fields>
+                                <Select id = "EmployeeViewBranch" items = "{/branches}" editable="false" selectedKey="{/employee/assignedBranchId}">
+                                    <core:Item key = "{id}" text = "{name}"></core:Item>
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+            </form:formContainers>
+            </form:Form>
+            </VBox>
+        </Page>
+    </App>
+</mvc:View>
