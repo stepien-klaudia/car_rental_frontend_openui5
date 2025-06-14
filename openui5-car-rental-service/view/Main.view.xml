@@ -133,6 +133,7 @@
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Zarządzanie rezerwacjami"
                         subheader="Wyświetlaj, edytuj lub anuluj rezerwację"
+                        ariaLabel="ReservationList"
                         press="onTilePress">
                         <TileContent>
                             <ImageContent src="sap-icon://check-availability"></ImageContent>

@@ -140,6 +140,11 @@
                 "pattern":"new_reservation",
                 "name":"NewReservation",
                 "target":"NewReservation"
+            },
+            {
+                "pattern":"reservation_list",
+                "name": "ReservationList",
+                "target":"ReservationList"
             }
         ],
         "targets":
@@ -231,6 +236,10 @@
             "NewReservation":
             {
                 "viewName":"NewReservation"
+            },
+            "ReservationList":
+            {
+                "viewName":"ReservationList"
             }
         }
         }
