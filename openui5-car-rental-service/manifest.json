@@ -150,6 +150,11 @@
                 "pattern":"reservation/{clientId}/{id}/view",
                 "name": "ReservationView",
                 "target": "ReservationView"
+            },
+            {
+                "pattern":"reservation/{clientId}/{id}/edit",
+                "name":"ReservationEdit",
+                "target": "ReservationEdit"
             }
         ],
         "targets":
@@ -249,6 +254,10 @@
             "ReservationView":
             {
                 "viewName": "ReservationView"
+            },
+            "ReservationEdit":
+            {
+                "viewName":"ReservationEdit"
             }
         }
         }
