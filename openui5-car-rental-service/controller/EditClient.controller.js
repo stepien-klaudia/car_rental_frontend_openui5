@@ -23,14 +23,13 @@ sap.ui.define([
   
       onInit: function () {
         var oModel = new JSONModel();
-        fetch("http://localhost:8090/api/clients")
+        fetch("http://localhost:8090/api/clients/active")
           .then (response => {
             if(!response.ok) throw new Error ("Wystąpił błąd");
             return response.json();
           }) 
           .then(data => {
-            var filteredClients = data.filter(client => client.blackList === false);
-            oModel.setData({clients: filteredClients})
+            oModel.setData({clients: data})
             
           })
           .catch(error => {
@@ -67,14 +66,7 @@ sap.ui.define([
         sap.ui.core.BusyIndicator.hide();
         sap.m.MessageToast.show("Zmieniono motyw");
         }
-        }),
-        new sap.m.MenuItem({
-        text: "Wyloguj",
-        icon: "sap-icon://log",
-        press: () => {
-            that.getOwnerComponent().getRouter().navTo("Logoff", {}, true);
-      }
-    })
+        })
     ]
     });
     }

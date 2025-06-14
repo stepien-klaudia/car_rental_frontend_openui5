@@ -51,14 +51,7 @@ sap.ui.define([
         sap.ui.core.BusyIndicator.hide();
         sap.m.MessageToast.show("Zmieniono motyw");
         }
-        }),
-        new sap.m.MenuItem({
-        text: "Wyloguj",
-        icon: "sap-icon://log",
-        press: () => {
-            that.getOwnerComponent().getRouter().navTo("Logoff", {}, true);
-      }
-    })
+        })
     ]
     });
     }

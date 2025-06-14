@@ -7,8 +7,9 @@ sap.ui.define([
 	"sap/m/library",
 	"sap/m/Text",
     "sap/m/MessageBox",
-    "sap/ui/core/BusyIndicator"
-  ], function (Controller, JSONModel, coreLibrary, Dialog, Button, mobileLibrary, Text, MessageBox, BusyIndicator) {
+    "sap/ui/core/BusyIndicator",
+    "sap/ui/core/Fragment"
+  ], function (Controller, JSONModel, coreLibrary, Dialog, Button, mobileLibrary, Text, MessageBox, BusyIndicator, Fragment) {
     "use strict";
     // shortcut for sap.m.ButtonType
 	var ButtonType = mobileLibrary.ButtonType;
@@ -19,11 +20,19 @@ sap.ui.define([
 	// shortcut for sap.ui.core.ValueState
 	var ValueState = coreLibrary.ValueState;
   
-    return Controller.extend("openui5-car-rental-service.controller.NewBranch", {
+    return Controller.extend("openui5-car-rental-service.controller.NewReservation", {
   
       onInit: function () {
-        this._oValueHelpDialog = null;
-      },
+        const oModel = new sap.ui.model.json.JSONModel();
+        Promise.all([
+            fetch("http://localhost:8090/api/clients/active").then((res) => res.json()),
+            fetch("http://localhost:8090/api/vehicles/available").then((res) => res.json()),
+            fetch("http://localhost:8090/api/employees").then((res) => res.json())
+        ])
+        .then(([clientsActive, vehiclesAviable, employees]) => oModel.setData({ clients: clientsActive, selectedClientId: "", vehicles: vehiclesAviable, selectedVehicleId:"", employees:employees, selectedEmployeeId: "" }));
+        this.getView().setModel(oModel);
+},
+
   
       onNavPress: function () {
         this.getOwnerComponent().getRouter().navTo("Main",{},true);
@@ -51,14 +60,7 @@ sap.ui.define([
         sap.ui.core.BusyIndicator.hide();
         sap.m.MessageToast.show("Zmieniono motyw");
         }
-        }),
-        new sap.m.MenuItem({
-        text: "Wyloguj",
-        icon: "sap-icon://log",
-        press: () => {
-            that.getOwnerComponent().getRouter().navTo("Logoff", {}, true);
-      }
-    })
+        })
     ]
     });
     }
@@ -116,26 +118,21 @@ sap.ui.define([
                 type: ButtonType.Emphasized,
                 text: "Tak",
                 press: function () {
-                    const branchName = this.byId("NewBranchName").getValue();
-                    const branchUlica = this.byId("NewBranchUlica").getValue();
-                    const branchHouseNr = this.byId("NewBranchHouseNr").getValue();
-                    const branchLocNr = this.byId("NewBranchLocNr").getValue();
-                    const branchPostalCode = this.byId("NewBranchPostalCode").getValue();
-                    const branchCity = this.byId("NewBranchCity").getValue();
-                    const branchRegion = this.byId("NewBranchRegion").getSelectedKey();
+                    const vehicle = this.byId("vehicleIdInput").getValue();
+                    const client = this.byId("clientIdInput").getValue();
+                    const employee = this.byId("employeeIdInput").getValue();
+                    const pickupDate = this.byId("NewReservationPickDate").getDateValue();
+                    const returnDate = this.byId("NewReservationBackDate").getDateValue();
                     //insert do bazy - ewentualnie powiadomienie o błędzie
                     const oData = {
-                        name: branchName,
-                        street: branchUlica,
-                        houseNo: branchHouseNr,
-                        locNo: branchLocNr,
-                        postalCode: branchPostalCode,
-                        city: branchCity,
-                        region: branchRegion
+                        vehicleId: vehicle,
+                        employeeId: employee,
+                        pickupDate: pickupDate,
+                        returnDate: returnDate
                     };
                     BusyIndicator.show(0);
                     $.ajax({
-                        url: "http://localhost:8090/api/branches", //endpoint
+                        url: "http://localhost:8090/api/clients/"+encodeURIComponent(client) + "/reservations", //endpoint
                         type: "POST",
                         contentType: "application/json",
                         data: JSON.stringify(oData),
@@ -194,7 +191,121 @@ sap.ui.define([
             
         })
         this.oRejectAproveMessage.open();
+    },
+
+    onClientValueHelp: function (oEvent) {
+    var oView = this.getView();
+
+    if (!this._pClientDialog) {
+        this._pClientDialog = Fragment.load({
+            id: oView.getId(),
+            name: "openui5-car-rental-service.view.fragment.ClientSelectDialog", // ← zmień na własną ścieżkę
+            controller: this
+        }).then(function (oDialog) {
+            oView.addDependent(oDialog);
+            return oDialog;
+        });
     }
+
+    this._pClientDialog.then(function (oDialog) {
+        // reset filtrowania przy otwieraniu
+        oDialog.getBinding("items").filter([]);
+        oDialog.open();
+    });
+},
+    onClientSearch: function (oEvent) {
+    const sQuery = oEvent.getParameter("value");
+    const oFilter = new sap.ui.model.Filter("lastName", sap.ui.model.FilterOperator.Contains, sQuery);
+    oEvent.getSource().getBinding("items").filter([oFilter]);
+},
+
+onClientSelect: function (oEvent) {
+    const oSelectedItem = oEvent.getParameter("selectedItem");
+    if (oSelectedItem) {
+        const oClient = oSelectedItem.getBindingContext().getObject();
+        this.byId("clientIdInput").setValue(oClient.id);
+        this.byId("NewReservationClientFirstName").setValue(oClient.firstName);
+        this.byId("NewReservationClientLastName").setValue(oClient.lastName);
+        this.byId("NewReservationClientDowod").setValue(oClient.dowod);
+    }
+},
+
+onDialogCancel: function () {
+    // nic nie robimy – użytkownik anulował wybór
+},
+
+onVehicleValueHelp: function () {
+    var oView = this.getView();
+
+    if (!this._pVehicleDialog) {
+        this._pVehicleDialog = Fragment.load({
+            id: oView.getId(),
+            name: "openui5-car-rental-service.view.fragment.VehicleSelectDialog",
+            controller: this
+        }).then(function (oDialog) {
+            oView.addDependent(oDialog);
+            return oDialog;
+        });
+    }
+
+    this._pVehicleDialog.then(function (oDialog) {
+        oDialog.getBinding("items").filter([]);
+        oDialog.open();
+    });
+},
+
+onVehicleSearch: function (oEvent) {
+    const sQuery = oEvent.getParameter("value");
+    const oFilter = new sap.ui.model.Filter("typ", sap.ui.model.FilterOperator.Contains, sQuery);
+    oEvent.getSource().getBinding("items").filter([oFilter]);
+},
+
+onVehicleSelect: function (oEvent) {
+    const oSelected = oEvent.getParameter("selectedItem");
+    if (oSelected) {
+        const oVehicle = oSelected.getBindingContext().getObject();
+        this.byId("vehicleIdInput").setValue(oVehicle.id);
+        this.byId("NewReservationVehicleVin").setValue(oVehicle.vin);
+        this.byId("NewReservationVehicleBrand").setValue(oVehicle.brand);
+        this.byId("NewReservationVehicleModel").setValue(oVehicle.model);
+    }
+},
+
+onEmployeeValueHelp: function () {
+    var oView = this.getView();
+
+    if (!this._pEmployeeDialog) {
+        this._pEmployeeDialog = Fragment.load({
+            id: oView.getId(),
+            name: "openui5-car-rental-service.view.fragment.EmployeeSelectDialog",
+            controller: this
+        }).then(function (oDialog) {
+            oView.addDependent(oDialog);
+            return oDialog;
+        });
+    }
+
+    this._pEmployeeDialog.then(function (oDialog) {
+        oDialog.getBinding("items").filter([]);
+        oDialog.open();
+    });
+},
+
+onEmployeeSearch: function (oEvent) {
+    const sQuery = oEvent.getParameter("value");
+    const oFilter = new sap.ui.model.Filter("lastName", sap.ui.model.FilterOperator.Contains, sQuery);
+    oEvent.getSource().getBinding("items").filter([oFilter]);
+},
+
+onEmployeeSelect: function (oEvent) {
+    const oSelected = oEvent.getParameter("selectedItem");
+    if (oSelected) {
+        const oEmp = oSelected.getBindingContext().getObject();
+        this.byId("employeeIdInput").setValue(oEmp.id);
+    }
+},
+
+
   
     });
   });

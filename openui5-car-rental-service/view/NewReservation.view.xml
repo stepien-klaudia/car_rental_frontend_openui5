@@ -1,13 +1,13 @@
 <mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
-    controllerName="openui5-car-rental-service.controller.NewBranch"
+    controllerName="openui5-car-rental-service.controller.NewReservation"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     displayBlock="true">
      <App>
-        <Page id="page_new_branch" showNavButton="true" navButtonPress="onNavPress">
+        <Page id="page_new_reservation" showNavButton="true" navButtonPress="onNavPress">
             <f:ShellBar 
-            title="Nowy Punkt"
-            secondTitle="Zarządzanie punktami"
+            title="Nowa Rezerwacja"
+            secondTitle="Zarządzanie rezerwacjami"
             >
                 <f:profile>
                     <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
@@ -21,11 +21,11 @@
                 class="sapUiMediumMarginBottom"
             ></MessageStrip>
             <form:Form 
-            id = "NewBranchForm"
+            id = "NewReservationForm"
             editable="true"
             >
             <form:title>
-                <core:Title text="Dodaj nowy punkt"></core:Title>
+                <core:Title text="Dodaj nowe wypożyczenie"></core:Title>
             </form:title>
             <form:layout>
                 <form:ResponsiveGridLayout 
@@ -46,71 +46,78 @@
             <form:formContainers>
                 <form:FormContainer >
                     <form:title>
-                        <core:Title text = "Dane punktu"></core:Title>
+                        <core:Title text = "Dane klienta"></core:Title>
                     </form:title>
                     <form:formElements>
-                        <form:FormElement label = "Nazwa punktu" >
+                        <form:FormElement label = "Id klienta" >
                             <form:fields>
-                                <Input id = "NewBranchName" required="true"></Input>
+                                <!-- <Input id = "NewReservationClientId" required="true"></Input> -->
+                                <Input id="clientIdInput" value="{/selectedClientId}" showValueHelp="true"
+                                    valueHelpRequest=".onClientValueHelp"
+                                            placeholder="Wybierz klienta" required="true" />
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Imię">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationClientFirstName"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Nazwisko">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationClientLastName"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Dowód osobisty">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationClientDowod"></Input>
                             </form:fields>
                         </form:FormElement>
                     </form:formElements>
                 </form:FormContainer>
                 <form:FormContainer >
                     <form:title>
-                        <core:Title text="Dane adresowe"></core:Title>
+                        <core:Title text = "Dane samochodu"></core:Title>
                     </form:title>
                     <form:formElements>
-                        <form:FormElement label = "Ulica">
+                        <form:FormElement label = "Id samochodu">
                             <form:fields>
-                                <Input id = "NewBranchUlica" required="true"></Input>
+                                <Input id="vehicleIdInput" value="{/selectedVehicleId}" showValueHelp="true"
+                                    valueHelpRequest=".onVehicleValueHelp"
+                                            placeholder="Wybierz samochód" required="true"/>                            
                             </form:fields>
                         </form:FormElement>
-                        <form:FormElement label = "Numer domu">
+                        <form:FormElement label = "Numer rejestracyjny">
                             <form:fields>
-                                <Input id = "NewBranchHouseNr" required="true"></Input>
+                                <Input editable="false" id = "NewReservationVehicleVin"></Input>
                             </form:fields>
                         </form:FormElement>
-                        <form:FormElement label = "Numer lokalu">
+                        <form:FormElement label = "Marka">
                             <form:fields>
-                                <Input id = "NewBranchLocNr" required="false"></Input>
+                                <Input editable="false" id = "NewReservationVehicleBrand"></Input>
                             </form:fields>
                         </form:FormElement>
-                        <form:FormElement label = "Kod pocztowy">
+                        <form:FormElement label = "Model" >
                             <form:fields>
-                                <MaskInput mask = "DD-DDD" id = "NewBranchPostalCode" required="true">
-                                    <rules>
-                                        <MaskInputRule maskFormatSymbol="D" regex="[0-9]"></MaskInputRule>
-                                    </rules>
-                                </MaskInput>
+                                <Input editable="false" id = "NewReservationVehicleModel"></Input>
                             </form:fields>
                         </form:FormElement>
-                        <form:FormElement label = "Miasto">
-                            <form:fields>
-                                <Input id = "NewBranchCity" required="true"></Input>
-                            </form:fields>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text="Dane rezerwacji"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Id pracownika obsługującego">
+                            <Input id="employeeIdInput" value="{/selectedEmployeeId}" showValueHelp="true"
+                                    valueHelpRequest=".onEmployeeValueHelp"
+                                            placeholder="Wybierz pracownika" required="true"/>
                         </form:FormElement>
-                        <form:FormElement label = "Województwo">
-                            <form:fields>
-                                <Select id = "NewBranchRegion">
-                                    <core:Item key="DS" text="Dolnośląskie" />
-                                    <core:Item key="KP" text="Kujawsko-pomorskie" />
-                                    <core:Item key="LU" text="Lubelskie" />
-                                    <core:Item key="LB" text="Lubuskie" />
-                                    <core:Item key="LD" text="Łódzkie" />
-                                    <core:Item key="MA" text="Małopolskie" />
-                                    <core:Item key="MZ" text="Mazowieckie" />
-                                    <core:Item key="OP" text="Opolskie" />
-                                    <core:Item key="PK" text="Podkarpackie" />
-                                    <core:Item key="PD" text="Podlaskie" />
-                                    <core:Item key="PM" text="Pomorskie" />
-                                    <core:Item key="SL" text="Śląskie" />
-                                    <core:Item key="SK" text="Świętokrzyskie" />
-                                    <core:Item key="WN" text="Warmińsko-mazurskie" />
-                                    <core:Item key="WP" text="Wielkopolskie" />
-                                    <core:Item key="ZP" text="Zachodniopomorskie" />
-                                </Select>
-                            </form:fields>
+                        <form:FormElement label = "Data odbioru">
+                            <DatePicker required="true" id = "NewReservationPickDate"></DatePicker>
+                        </form:FormElement>
+                        <form:FormElement label = "Data zwrotu">
+                            <DatePicker required="true" id = "NewReservationBackDate"></DatePicker>
                         </form:FormElement>
                     </form:formElements>
                 </form:FormContainer>
@@ -118,12 +125,12 @@
             </form:Form>
             </VBox>
             <footer>
-                <OverflowToolbar id="NewBranchFooter">
+                <OverflowToolbar id="NewReservationFooter">
                     <ToolbarSpacer ></ToolbarSpacer>
-                    <Button type="Accept" text="Dodaj" id="AddNewBranch" press="onAcceptPress">
+                    <Button type="Accept" text="Dodaj" id="AddNewReservation" press="onAcceptPress">
                         <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
                     </Button>
-                    <Button type="Reject" text="Anuluj" id="CancelNewBranch" press="onRejectPress">
+                    <Button type="Reject" text="Anuluj" id="CancelNewReservation" press="onRejectPress">
                         <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
                     </Button>
                 </OverflowToolbar>

@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <TableSelectDialog
+        id="employeeSelectDialog"
+        title="Wybierz pracownika"
+        items="{/employees}"
+        search=".onEmployeeSearch"
+        confirm=".onEmployeeSelect"
+        cancel=".onDialogCancel">
+
+        <columns>
+            <Column><Text text="ID" /></Column>
+            <Column><Text text="Imię" /></Column>
+            <Column ><Text text="Nazwisko"></Text></Column>
+        </columns>
+
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{id}" />
+                    <Text text="{firstName}" />
+                    <Text text="{lastName}"></Text>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </TableSelectDialog>
+</core:FragmentDefinition>

@@ -122,6 +122,7 @@
                     <GenericTile 
                         class="sapUiTinyMarginBegin sapUiTinyMarginTop float: left"
                         header="Dodaj rezerwację"
+                        ariaLabel="NewReservation"
                         press="onTilePress">
                         <TileContent>
                             <ImageContent src="sap-icon://add-calendar"></ImageContent>

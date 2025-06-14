@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <TableSelectDialog
+        id="vehicleSelectDialog"
+        title="Wybierz pojazd"
+        items="{/vehicles}"
+        search=".onVehicleSearch"
+        confirm=".onVehicleSelect"
+        cancel=".onDialogCancel">
+        
+        <columns>
+            <Column><Text text="ID" /></Column>
+            <Column ><Text text="Marka"></Text></Column>
+            <Column><Text text="Model" /></Column>
+            <Column ><Text text="Numer rejestracyjny"></Text></Column>
+            <Column ><Text text = "Typ"></Text></Column>
+        </columns>
+
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{id}" />
+                    <Text text="{brand}"></Text>
+                    <Text text="{model}" />
+                    <Text text="{vin}"></Text>
+                    <Text text="{typ}"></Text>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </TableSelectDialog>
+</core:FragmentDefinition>

@@ -135,6 +135,11 @@
                 "pattern":"employee/{id}/{branch}/edit",
                 "name":"EmployeeEdit",
                 "target":"EmployeeEdit"
+            },
+            {
+                "pattern":"new_reservation",
+                "name":"NewReservation",
+                "target":"NewReservation"
             }
         ],
         "targets":
@@ -222,6 +227,10 @@
             "EmployeeEdit":
             {
                 "viewName":"EmployeeEdit"
+            },
+            "NewReservation":
+            {
+                "viewName":"NewReservation"
             }
         }
         }
