@@ -173,73 +173,21 @@ sap.ui.define([
     this.oBlockApproveMessage.open();
     },
 
-    // onUnblockPress: function (oEvent){
-    //   const id = oEvent.getSource().getBindingContext().getProperty("id");
-    //   this.oUnblockApproveMessage = new Dialog({
-    //     type: DialogType.Message,
-    //     title: "Potwierdzenie",
-    //     content: new Text({text: "Czy na pewno chcesz odblokować pojazd?"}),
-    //     beginButton: new Button({
-    //       type: ButtonType.Emphasized,
-    //       text: "Tak",
-    //       press: function () {
-    //         const oData = {
-    //           status : "AVIALABLE",
-    //           lockedUntil: null
-    //         }
-    //         BusyIndicator.show(0);
-    //         $.ajax({
-    //           url: "http://localhost:8090/api/vehicles/" + encodeURIComponent(id) +"/lock",
-    //           type: "PATCH",
-    //           contentType: "application/json",
-    //           data: JSON.stringify(oData),
-    //           success: function () {
-    //               // sap.m.MessageToast.show("Dane zapisane do bazy!");
-    //               sap.m.MessageBox.success("Dane zostały zaktualizowane", {
-    //                   onClose: function (oAction){
-    //                       // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
-    //                       location.reload();
-    //                   }.bind(this)
-    //               }); 
-    //           }.bind(this),
-    //           error: function (){
-    //               sap.m.MessageBox.error("Podczas zapisu wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
-    //                   // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
-    //                   location.reload();
-    //               }.bind(this)});
-    //           }.bind(this),
-    //           complete: function () {
-    //               this.oUnblockApproveMessage.close();
-    //               BusyIndicator.hide();
-    //           }
-    //       });
-    //     }.bind(this)
-    //   }),
-    //   endButton: new Button({
-    //             type: ButtonType.Emphasized,
-    //             text: "Nie",
-    //             press: function (){
-    //                 this.oUnblockApproveMessage.close();
-    //             }.bind(this)
-    //         })
-    // })
-    // this.oUnblockApproveMessage.open();
-    // },
-
     onDeletePress: function (oEvent){
-      const id = oEvent.getSource().getBindingContext().getObject().id;
+      const id = oEvent.getSource().getBindingContext().getObject().clientId;
+      const res = oEvent.getSource().getBindingContext().getObject().id;
       this.oDeleteApproveMessage = new Dialog({
         type: DialogType.Message,
         title: "Potwierdzenie",
-        content: new Text({text: "Czy na pewno chcesz usunąć pojazd z bazy?"}),
+        content: new Text({text: "Czy na pewno chcesz anulować rezerwację?"}),
         beginButton: new Button({
           type: ButtonType.Emphasized,
           text: "Tak",
           press: function () {
             BusyIndicator.show(0);
             $.ajax({
-              url: "http://localhost:8090/api/vehicles/" + encodeURIComponent(id),
-              type: "DELETE",
+              url: "http://localhost:8090/api/clients/" + encodeURIComponent(id) + "/reservations/" + encodeURIComponent(res) + "/cancel",
+              type: "PUT",
               success: function () {
                   // sap.m.MessageToast.show("Dane zapisane do bazy!");
                   sap.m.MessageBox.success("Pojazd został usunięty", {
@@ -250,7 +198,7 @@ sap.ui.define([
                   }); 
               }.bind(this),
               error: function (){
-                  sap.m.MessageBox.error("Podczas usuwania wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
+                  sap.m.MessageBox.error("Podczas anulowania wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
                       // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
                       location.reload();
                   }.bind(this)});
