@@ -145,6 +145,11 @@
                 "pattern":"reservation_list",
                 "name": "ReservationList",
                 "target":"ReservationList"
+            },
+            {
+                "pattern":"reservation/{clientId}/{id}/view",
+                "name": "ReservationView",
+                "target": "ReservationView"
             }
         ],
         "targets":
@@ -240,6 +245,10 @@
             "ReservationList":
             {
                 "viewName":"ReservationList"
+            },
+            "ReservationView":
+            {
+                "viewName": "ReservationView"
             }
         }
         }

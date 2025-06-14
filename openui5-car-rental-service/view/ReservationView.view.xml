@@ -1,0 +1,123 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.ReservationView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+     <App>
+        <Page id="page_view_reservation" showNavButton="true" navButtonPress="onNavPress">
+            <f:ShellBar 
+            title="Szczegóły rezerwacji"
+            secondTitle="Zarządzanie rezerwacjami"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+            <MessageStrip 
+                text="To tylko wgląd, aby edytować dane należy wrócić do listy rezerwacji"
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+            ></MessageStrip>
+            <form:Form 
+            editable="true"
+            >
+            <form:title>
+                <core:Title text="Przeglądaj dane rezerwacji"></core:Title>
+            </form:title>
+            <form:layout>
+                <form:ResponsiveGridLayout 
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="3"
+                adjustLabelSpan="true"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="4"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="true"></form:ResponsiveGridLayout>
+            </form:layout>
+            <form:formContainers>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane klienta"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Id klienta" >
+                            <form:fields>
+                                <!-- <Input id = "NewReservationClientId" required="true"></Input> -->
+                                <Input id="clientIdInput1" value="{/reservation/clientId}" showValueHelp="true"
+                                    valueHelpRequest=".onClientValueHelp"
+                                            placeholder="Wybierz klienta" required="true" editable="false"/>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Imię i nazwisko">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationClientFirstName1" value = "{/reservation/clientFullName}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Dowód osobisty">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationClientDowod1" value="{/reservation/clientDowod}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane samochodu"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Id samochodu">
+                            <form:fields>
+                                <Input id="vehicleIdInput1" value="{/reservation/vehicleId}" showValueHelp="true"
+                                    valueHelpRequest=".onVehicleValueHelp"
+                                            placeholder="Wybierz samochód" required="true" editable="false"/>                            
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Numer rejestracyjny">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationVehicleVin1" value="{/reservation/vehicleVin}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Marka">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationVehicleBrand1" value="{/reservation/vehicleBrand}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Model" >
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationVehicleModel1" value="{/reservation/vehicleModel}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text="Dane rezerwacji"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Id pracownika obsługującego">
+                            <Input id="employeeIdInput1" value="{/reservation/employeeId}" showValueHelp="true"
+                                    valueHelpRequest=".onEmployeeValueHelp"
+                                            placeholder="Wybierz pracownika" required="true" editable="false"/>
+                        </form:FormElement>
+                        <form:FormElement label = "Data odbioru">
+                            <DatePicker required="true" id = "NewReservationPickDate1" value="{/reservation/pickupDate}" editable="false"></DatePicker>
+                        </form:FormElement>
+                        <form:FormElement label = "Data zwrotu">
+                            <DatePicker required="true" id = "NewReservationBackDate1" value="{/reservation/returnDate}" editable="false"></DatePicker>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+            </form:formContainers>
+            </form:Form>
+            </VBox>
+        </Page>
+    </App>
+</mvc:View>
