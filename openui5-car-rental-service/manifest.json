@@ -170,6 +170,11 @@
                 "pattern":"reports/reservation-history",
                 "name":"ReservationsHistory",
                 "target":"ReservationsHistory"
+            },
+            {
+                "pattern":"reports/new-clients",
+                "name": "ClientsReport",
+                "target": "ClientsReport"
             }
         ],
         "targets":
@@ -285,6 +290,10 @@
             "ReservationsHistory":
             {
                 "viewName":"ReservationsHistory"
+            },
+            "ClientsReport":
+            {
+                "viewName":"ClientsReport"
             }
         }
         }

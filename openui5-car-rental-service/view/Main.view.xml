@@ -189,44 +189,10 @@
                         <GenericTile 
                             class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
                             header="Nowi klienci"
+                            ariaLabel="ClientsReport"
                             press="onTilePress">
                             <TileContent>
                                 <NumericContent value="{/clientsKPI/newClients}" icon="sap-icon://decision" valueColor="Good"></NumericContent>
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile 
-                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
-                            header="Najczęściej wypożyczający klienci"
-                            press="onTilePress">
-                            <TileContent>
-                                <ImageContent src="sap-icon://bar-chart"></ImageContent>
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile 
-                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
-                            header="Zalegający klienci"
-                            press="onTilePress">
-                            <TileContent>
-                                <NumericContent value="{/clientsKPI/invoiceRemainingClients}" icon="sap-icon://money-bills" valueColor="Error"></NumericContent>
-                            </TileContent>
-                        </GenericTile>
-                    </FlexBox>
-                    <Title text="Raporty dotyczące wypożyczeń" level="H4" class="margin-bottom: 1rem"></Title>
-                    <FlexBox class="sapUiTinyMarginTop">
-                        <GenericTile 
-                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
-                            header="Wypożyczenia w danym okresie"
-                            press="onTilePress">
-                            <TileContent>
-                                <NumericContent value="{/reservationsKPI/thisMonth}" icon="sap-icon://present" valueColor="Good"></NumericContent>
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile 
-                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
-                            header="Opóźnienia w zwrocie"
-                            press="onTilePress">
-                            <TileContent>
-                                <NumericContent value="{/reservationsKPI/delayedReturns}" icon="sap-icon://lateness" valueColor="Error"></NumericContent>
                             </TileContent>
                         </GenericTile>
                     </FlexBox>
