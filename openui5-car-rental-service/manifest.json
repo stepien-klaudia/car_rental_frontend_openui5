@@ -160,6 +160,16 @@
                 "pattern": "reservation/{clientId}/{id}/invoice",
                 "name": "ReservationInvoice",
                 "target": "ReservationInvoice"
+            },
+            {
+                "pattern":"reports/fleet",
+                "name": "FleetReport",
+                "target": "FleetReport"
+            },
+            {
+                "pattern":"reports/reservation-history",
+                "name":"ReservationsHistory",
+                "target":"ReservationsHistory"
             }
         ],
         "targets":
@@ -267,6 +277,14 @@
             "ReservationInvoice":
             {
                 "viewName": "ReservationInvoice"
+            },
+            "FleetReport":
+            {
+                "viewName":"FleetReport"
+            },
+            "ReservationsHistory":
+            {
+                "viewName":"ReservationsHistory"
             }
         }
         }

@@ -168,6 +168,7 @@
                         <GenericTile 
                             class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
                             header="Stan floty"
+                            ariaLabel="FleetReport"
                             press="onTilePress">
                             <TileContent>
                                 <ImageContent src="sap-icon://car-rental"></ImageContent>
@@ -179,6 +180,7 @@
                         <GenericTile 
                             class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
                             header="Historia wypożyczeń klienta"
+                            ariaLabel="ReservationsHistory"
                             press="onTilePress">
                             <TileContent>
                                 <ImageContent src="sap-icon://cart"></ImageContent>
@@ -217,14 +219,6 @@
                             press="onTilePress">
                             <TileContent>
                                 <NumericContent value="{/reservationsKPI/thisMonth}" icon="sap-icon://present" valueColor="Good"></NumericContent>
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile 
-                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
-                            header="Zbliżające się zwroty"
-                            press="onTilePress">
-                            <TileContent>
-                                <NumericContent value="{/reservationsKPI/returnsThisWeek}" icon="sap-icon://in-progress-2" valueColor="Neutral"></NumericContent>
                             </TileContent>
                         </GenericTile>
                         <GenericTile 

@@ -1,0 +1,79 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.ReservationsHistory"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+<App>
+    <Page id="page_reservation_history" showNavButton="true" navButtonPress="onNavPress">
+        <f:ShellBar 
+            title="Lista aktywnych rezerwacji"
+            secondTitle="Zarządzanie reserwacjami"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+                <Title text="Historia rezerwacji klienta" level="H3"></Title>
+                <MessageStrip 
+                text="Wybierz pracownika i zobacz historię wypożyczeń"
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+                ></MessageStrip>
+                <OverflowToolbar height="4.5rem">
+                    <Label text="Klient" labelFor="ClientSearch1" />
+                    <!-- <SearchField id="ClientSearch" width="12rem" placeholder="Wybierz klienta" showSearchButton="false">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </SearchField> -->
+                    <Input id="ClientSearch1" width="12rem" placeholder="Wybierz klienta" showValueHelp="true" valueHelpRequest=".onClientHelpRequest"></Input>  
+                <ToolbarSpacer ></ToolbarSpacer>
+                <Button text = "Wczytaj historię" type = "Emphasized" icon="sap-icon://filter" press = "onFilterPress"></Button>  
+                </OverflowToolbar>
+                <Table id = "ReservationHistoryTable" inset="false" items="{/reservations}">
+                    <columns>
+                        <Column width="12rem">
+                            <Text text="Numer rezerwacji"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Klient"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Marka i model pojazdu"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Numer rejestracyjny samochodu"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Data odbioru"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Przewidywana data zwrotu"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Data zwrotu"></Text>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Status"></Text>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem >
+                            <cells>
+                                <Text text = "{id}"></Text>
+                                <Text text="{clientFullName}"></Text>
+                                <Text text="{vehicleBrandAndModel}"></Text>
+                                <Text text="{vehicleVin}"></Text>
+                                <Text text="{pickupDate}"></Text>
+                                <Text text="{returnDate}"></Text>
+                                <Text text="{actualReturn}"></Text>
+                                <Text text="{status}"></Text>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>                   
+    </VBox>
+    </Page>
+</App>
+
+</mvc:View>

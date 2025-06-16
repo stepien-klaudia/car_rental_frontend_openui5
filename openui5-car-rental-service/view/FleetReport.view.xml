@@ -1,0 +1,56 @@
+<mvc:View  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.FleetReport"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+<App>
+    <Page showNavButton="true" navButtonPress="onNavPress">
+        <f:ShellBar 
+            title="Stan floty"
+            secondTitle="Raporty"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+        
+        <IconTabBar select=".onFilterSelect" class="sapUiResponsiveContentPadding">
+        <items>
+            <IconTabFilter showAll="true" text = "Wszystkie samochody" count = "{/kpi/totalReport}" key="All"/>
+            <IconTabFilter icon="sap-icon://unlocked" iconColor="Positive" count = "{/kpi/available}" text = "Dostępne" key = "Positive"></IconTabFilter>
+            <IconTabFilter icon="sap-icon://warning" iconColor="Critical" count = "{/kpi/unavailable}" text="Niedostępne" key="Warning"/>
+            <IconTabFilter icon= "sap-icon://high-priority" iconColor="Negative" count = "{/kpi/inService}" text = "W serwisie" key = "Critical"/>
+        </items>
+        <content>
+            <Table id="FleetReportTable" inset="false" headerText="Wszystkie samochody" items = "{/vehicles}">
+                <columns>
+                    <Column >
+                        <Text text="Numer rejestracyjny"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Marka"></Text>
+                    </Column>
+                    <Column >
+                        <Text text ="Model"></Text>
+                    </Column>
+                    <Column >
+                        <Text text="Typ"></Text>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text = "{vin}"></Text>
+                            <Text text = "{brand}"></Text>
+                            <Text text = "{model}"></Text>
+                            <Text text = "{typ}"></Text>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        </IconTabBar>
+    </Page>
+</App>
+
+</mvc:View>
