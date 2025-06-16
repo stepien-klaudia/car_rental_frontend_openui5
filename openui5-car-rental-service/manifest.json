@@ -155,6 +155,11 @@
                 "pattern":"reservation/{clientId}/{id}/edit",
                 "name":"ReservationEdit",
                 "target": "ReservationEdit"
+            },
+            {
+                "pattern": "reservation/{clientId}/{id}/invoice",
+                "name": "ReservationInvoice",
+                "target": "ReservationInvoice"
             }
         ],
         "targets":
@@ -258,6 +263,10 @@
             "ReservationEdit":
             {
                 "viewName":"ReservationEdit"
+            },
+            "ReservationInvoice":
+            {
+                "viewName": "ReservationInvoice"
             }
         }
         }

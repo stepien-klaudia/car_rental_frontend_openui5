@@ -1,0 +1,128 @@
+<mvc:View xmlns:unified="sap.ui.unified"  xmlns:smarttable="sap.ui.comp.smarttable" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+    controllerName="openui5-car-rental-service.controller.ReservationInvoice"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+     <App>
+        <Page id="page_reservation_invoice" showNavButton="true" navButtonPress="onNavPress">
+            <f:ShellBar 
+            title="Faktura i zakończenie rezerwacji"
+            secondTitle="Zarządzanie rezerwacjami"
+            >
+                <f:profile>
+                    <f:Avatar initials="UI" press="onProfilePress"></f:Avatar>
+                </f:profile>
+            </f:ShellBar>
+            <VBox class="sapUiSmallMargin">
+            <MessageStrip 
+                text="Zapisz faktirę poprzez przycisk Zapisz"
+                showIcon="true"
+                showCloseButton="true"
+                class="sapUiMediumMarginBottom"
+            ></MessageStrip>
+            <form:Form 
+            editable="true"
+            >
+            <form:title>
+                <core:Title text="Faktura do rezerwacji"></core:Title>
+            </form:title>
+            <form:layout>
+                <form:ResponsiveGridLayout 
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="3"
+                adjustLabelSpan="true"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="4"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="true"></form:ResponsiveGridLayout>
+            </form:layout>
+            <form:formContainers>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane klienta"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Imię i nazwisko">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationClientFirstName3" value = "{/reservation/clientFullName}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Dowód osobisty">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationClientDowod3" value="{/reservation/clientDowod}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text = "Dane samochodu"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Numer rejestracyjny">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationVehicleVin3" value="{/reservation/vehicleVin}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Marka">
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationVehicleBrand3" value="{/reservation/vehicleBrand}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                        <form:FormElement label = "Model" >
+                            <form:fields>
+                                <Input editable="false" id = "NewReservationVehicleModel3" value="{/reservation/vehicleModel}"></Input>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+                <form:FormContainer >
+                    <form:title>
+                        <core:Title text="Dane rezerwacji"></core:Title>
+                    </form:title>
+                    <form:formElements>
+                        <form:FormElement label = "Id pracownika obsługującego rezerwację">
+                            <Input id="employeeIdInput3" value="{/reservation/employeeId}" showValueHelp="true"
+                                    valueHelpRequest=".onEmployeeValueHelp"
+                                            placeholder="Wybierz pracownika" required="true" editable="false"/>
+                        </form:FormElement>
+                        <form:FormElement label = "Data odbioru">
+                            <DatePicker required="true" id = "NewReservationPickDate3" value="{/reservation/pickupDate}" editable="false"></DatePicker>
+                        </form:FormElement>
+                        <form:FormElement label = "Data zwrotu">
+                            <DatePicker required="true" id = "NewReservationBackDate3" value="{/reservation/returnDate}" editable="false"></DatePicker>
+                        </form:FormElement>
+                        <form:FormElement label = "Faktyczna data zwrotu">
+                            <DatePicker change="onDateChange" required="true" id = "NewReservationReturnDate3" value="{/reservation/actualReturn}"></DatePicker>
+                        </form:FormElement>
+                        <form:FormElement label = "Kwota do zapłaty [PLN]">
+                            <unified:Currency id = "payment" value="{/reservation/amount}" ></unified:Currency>
+                        </form:FormElement>
+                        <form:FormElement label = "Faktura opłacona">
+                            <CheckBox id="isPaid"></CheckBox>
+                        </form:FormElement>
+                    </form:formElements>
+                </form:FormContainer>
+            </form:formContainers>
+            </form:Form>
+            </VBox>
+            <footer>
+                <OverflowToolbar id="invoiceFooter">
+                    <ToolbarSpacer ></ToolbarSpacer>
+                    <Button type="Accept" text="Zapisz" id="NewInvoice" press="onAcceptPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                    <Button type="Reject" text="Anuluj" id="CancelInvoice" press="onRejectPress">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"></OverflowToolbarLayoutData></layoutData>
+                    </Button>
+                </OverflowToolbar>
+            </footer>
+        </Page>
+    </App>
+</mvc:View>

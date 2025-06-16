@@ -119,58 +119,9 @@ sap.ui.define([
     },
 
     onBlockPress: function (oEvent){
-      const id = oEvent.getSource().getBindingContext().getProperty("id");
-      this.oBlockApproveMessage = new Dialog({
-        type: DialogType.Message,
-        title: "Potwierdzenie",
-        content: new Text({text: "Czy na pewno chcesz zablokować pojazd?"}),
-        beginButton: new Button({
-          type: ButtonType.Emphasized,
-          text: "Tak",
-          press: function () {
-            const blockDate = new Date();
-            blockDate.setDate(blockDate.getDate() + 7)
-            const oData = {
-              status : "IN_SERVICE",
-              lockedUntil: blockDate
-            }
-            BusyIndicator.show(0);
-            $.ajax({
-              url: "http://localhost:8090/api/vehicles/" + encodeURIComponent(id) +"/lock",
-              type: "PATCH",
-              contentType: "application/json",
-              data: JSON.stringify(oData),
-              success: function () {
-                  // sap.m.MessageToast.show("Dane zapisane do bazy!");
-                  sap.m.MessageBox.success("Dane zostały zaktualizowane", {
-                      onClose: function (oAction){
-                          // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
-                          location.reload();
-                      }.bind(this)
-                  }); 
-              }.bind(this),
-              error: function (){
-                  sap.m.MessageBox.error("Podczas zapisu wystąpił problem, spróbuj ponownie", {onClose: function(oAction){
-                      // this.getOwnerComponent().getRouter().navTo("EditCar",{},true);
-                      location.reload();
-                  }.bind(this)});
-              }.bind(this),
-              complete: function () {
-                  this.oBlockApproveMessage.close();
-                  BusyIndicator.hide();
-              }
-          });
-        }.bind(this)
-      }),
-      endButton: new Button({
-                type: ButtonType.Emphasized,
-                text: "Nie",
-                press: function (){
-                    this.oBlockApproveMessage.close();
-                }.bind(this)
-            })
-    })
-    this.oBlockApproveMessage.open();
+      const id = oEvent.getSource().getBindingContext().getObject().id;
+      const client = oEvent.getSource().getBindingContext().getObject().clientId;
+      this.getOwnerComponent().getRouter().navTo("ReservationInvoice", { id: id, clientId : client });
     },
 
     onDeletePress: function (oEvent){
