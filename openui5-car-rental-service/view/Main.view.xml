@@ -173,14 +173,6 @@
                                 <ImageContent src="sap-icon://car-rental"></ImageContent>
                             </TileContent>
                         </GenericTile>
-                        <GenericTile 
-                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
-                            header="Historia pojazdu"
-                            press="onTilePress">
-                            <TileContent>
-                                <ImageContent src="sap-icon://insurance-car"></ImageContent>
-                            </TileContent>
-                        </GenericTile>
                     </FlexBox>
                     <Title text = "Raporty dotyczące klientów" level="H4" class="margin-bottom: 1rem"></Title>
                     <FlexBox class="sapUiTinyMarginTop">
@@ -197,7 +189,7 @@
                             header="Nowi klienci"
                             press="onTilePress">
                             <TileContent>
-                                <NumericContent value="10" icon="sap-icon://decision"></NumericContent>
+                                <NumericContent value="{/clientsKPI/newClients}" icon="sap-icon://decision" valueColor="Good"></NumericContent>
                             </TileContent>
                         </GenericTile>
                         <GenericTile 
@@ -213,7 +205,7 @@
                             header="Zalegający klienci"
                             press="onTilePress">
                             <TileContent>
-                                <NumericContent value="10" icon="sap-icon://money-bills"></NumericContent>
+                                <NumericContent value="{/clientsKPI/invoiceRemainingClients}" icon="sap-icon://money-bills" valueColor="Error"></NumericContent>
                             </TileContent>
                         </GenericTile>
                     </FlexBox>
@@ -224,7 +216,7 @@
                             header="Wypożyczenia w danym okresie"
                             press="onTilePress">
                             <TileContent>
-                                <NumericContent value="10" icon="sap-icon://present"></NumericContent>
+                                <NumericContent value="{/reservationsKPI/thisMonth}" icon="sap-icon://present" valueColor="Good"></NumericContent>
                             </TileContent>
                         </GenericTile>
                         <GenericTile 
@@ -232,7 +224,7 @@
                             header="Zbliżające się zwroty"
                             press="onTilePress">
                             <TileContent>
-                                <NumericContent value="10" icon="sap-icon://in-progress-2"></NumericContent>
+                                <NumericContent value="{/reservationsKPI/returnsThisWeek}" icon="sap-icon://in-progress-2" valueColor="Neutral"></NumericContent>
                             </TileContent>
                         </GenericTile>
                         <GenericTile 
@@ -240,15 +232,7 @@
                             header="Opóźnienia w zwrocie"
                             press="onTilePress">
                             <TileContent>
-                                <NumericContent value="10" icon="sap-icon://lateness"></NumericContent>
-                            </TileContent>
-                        </GenericTile>
-                        <GenericTile 
-                            class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom float: left"
-                            header="Wolne i zajęte samochody"
-                            press="onTilePress">
-                            <TileContent>
-                                <ImageContent src="sap-icon://collision"></ImageContent>
+                                <NumericContent value="{/reservationsKPI/delayedReturns}" icon="sap-icon://lateness" valueColor="Error"></NumericContent>
                             </TileContent>
                         </GenericTile>
                     </FlexBox>
